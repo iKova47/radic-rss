@@ -70,10 +70,4 @@ struct FeedViewModel: Hashable {
             result + (item.isRead ? 0 : 1)
         }
     }
-
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-//        hasher.combine(title)
-//        hasher.combine(numberOfUnreadItems)
-//    }
 }

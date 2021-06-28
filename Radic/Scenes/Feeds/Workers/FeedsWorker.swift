@@ -32,7 +32,7 @@ extension FeedsWorker {
                 case .finished:
                     break
                 case .failure(let error):
-                    print("Failed to fetch data with error", error)
+                    Log.error("Failed to fetch feeds", error: error, category: .feeds)
                 }
             } receiveValue: { [weak self] feeds in
                 self?.feeds = Array(feeds)
@@ -56,42 +56,4 @@ extension FeedsWorker {
             model.channel?.items.forEach { $0.isRead = true }
         }
     }
-
-    func refreshFeeds() {
-
-        feeds.forEach { feed in
-            if let urlString = feed.url, let url = URL(string: urlString) {
-
-                parser.parse(contentsOf: url).sink { _ in
-
-                } receiveValue: { [weak self, weak feed] channel in
-
-                    if
-                        let newLastBuildDate = channel.lastBuildDate,
-                        let oldLastBuildDate = feed?.channel?.lastBuildDate {
-                        print("Comparing", channel.title!)
-
-                        print("new date", DateFormatter.short.string(from: newLastBuildDate))
-                        print("old date", DateFormatter.short.string(from: oldLastBuildDate))
-
-                        if newLastBuildDate > oldLastBuildDate {
-                            print(channel.title!, "is updated")
-                        }
-                    }
-
-                    self?.channelRepostory.add(object: channel)
-                }
-                .store(in: &cancellables)
-            }
-        }
-    }
-}
-
-extension DateFormatter {
-
-    static let short: DateFormatter = {
-        let formater = DateFormatter()
-        formater.dateFormat = "MMM dd"
-        return formater
-    }()
 }

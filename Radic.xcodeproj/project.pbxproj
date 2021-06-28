@@ -53,6 +53,8 @@
 		2CAA34342689EB86001AC4CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CAA34042689EB86001AC4CF /* LaunchScreen.storyboard */; };
 		2CAA34362689EB86001AC4CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA34082689EB86001AC4CF /* AppDelegate.swift */; };
 		2CAA34382689EB86001AC4CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA340A2689EB86001AC4CF /* SceneDelegate.swift */; };
+		2CAA343C2689EF6F001AC4CF /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA343B2689EF6F001AC4CF /* Log.swift */; };
+		2CAA343F268A0D70001AC4CF /* DateFormatter+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA343E268A0D70001AC4CF /* DateFormatter+Default.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +104,8 @@
 		2CAA34092689EB86001AC4CF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAA340A2689EB86001AC4CF /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2CAA34392689EB9E001AC4CF /* Radic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CAA343B2689EF6F001AC4CF /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		2CAA343E268A0D70001AC4CF /* DateFormatter+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Default.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +227,8 @@
 		2CAA33DC2689EB86001AC4CF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2CAA343D268A0D64001AC4CF /* Extensions */,
+				2CAA343A2689EF67001AC4CF /* Log */,
 				2CAA33DD2689EB86001AC4CF /* ViewModels */,
 				2CAA33DF2689EB86001AC4CF /* Repository */,
 				2CAA33E12689EB86001AC4CF /* FavIconWorker */,
@@ -385,6 +391,22 @@
 			path = BaseViews;
 			sourceTree = "<group>";
 		};
+		2CAA343A2689EF67001AC4CF /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				2CAA343B2689EF6F001AC4CF /* Log.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		2CAA343D268A0D64001AC4CF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2CAA343E268A0D70001AC4CF /* DateFormatter+Default.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAA341E2689EB86001AC4CF /* FeedViewModel.swift in Sources */,
+				2CAA343C2689EF6F001AC4CF /* Log.swift in Sources */,
 				2CAA34282689EB86001AC4CF /* FeedModel.swift in Sources */,
 				2CAA34172689EB86001AC4CF /* FeedItemsModels.swift in Sources */,
 				2CAA34102689EB86001AC4CF /* FeedsContextMenuBuilder.swift in Sources */,
@@ -488,6 +511,7 @@
 				2CAA340D2689EB86001AC4CF /* FeedsModels.swift in Sources */,
 				2CAA34312689EB86001AC4CF /* BaseTableViewCell.swift in Sources */,
 				2CAA342E2689EB86001AC4CF /* FeedParseError.swift in Sources */,
+				2CAA343F268A0D70001AC4CF /* DateFormatter+Default.swift in Sources */,
 				2CAA34222689EB86001AC4CF /* BackgroundTaskScheduler.swift in Sources */,
 				2CAA34252689EB86001AC4CF /* Images.swift in Sources */,
 				2CAA34382689EB86001AC4CF /* SceneDelegate.swift in Sources */,

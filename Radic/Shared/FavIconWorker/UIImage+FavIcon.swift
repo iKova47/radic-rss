@@ -9,8 +9,13 @@ import UIKit
 
 extension UIImageView {
 
+
+    /// Uses the `FavIconWorker` to fetch the available favIcon for a given url
+    /// - Parameters:
+    ///   - url: The url of the `favIcon`
+    ///   - placeholder: The placeholder to use while the image is loading 
     func load(favIcon url: URL, placeholder: UIImage?) {
-        self.image = placeholder
+        image = placeholder
 
         FavIconWorker.shared.fetch(from: url) { [weak self] image in
             guard let image = image else {

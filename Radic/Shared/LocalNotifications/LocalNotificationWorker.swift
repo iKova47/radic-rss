@@ -13,7 +13,7 @@ final class LocalNotificationWorker {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { authorised, error in
             guard !authorised else { return }
 
-            print("The user has declined the local notifications", error)
+            Log.error("The user has declined the local notifications", error: error)
         }
     }
 

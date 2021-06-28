@@ -19,11 +19,12 @@ final class BackgroundTaskScheduler {
 
     static func register(backgroundTask: BackgroundTask) {
 
-        print("registerd taks with identifier", type(of: backgroundTask).identifier)
+        let identifier = type(of: backgroundTask).identifier
+        Log.info("Registered new background task with identifier: \(identifier)", category: .backgroundTask)
 
         BGTaskScheduler
             .shared
-            .register(forTaskWithIdentifier: type(of: backgroundTask).identifier, using: nil) { [backgroundTask] task in
+            .register(forTaskWithIdentifier: identifier, using: nil) { [backgroundTask] task in
                 task.expirationHandler = {
                     task.setTaskCompleted(success: false)
                 }
@@ -31,7 +32,7 @@ final class BackgroundTaskScheduler {
                 backgroundTask.execute { [task] result in
                     switch result {
                     case .failure(let error):
-                        print("Task execution for \(type(of: backgroundTask)) has failed with error", error)
+                        Log.error("Task execution for \(type(of: backgroundTask)) has failed with error", error: error, category: .backgroundTask)
                         task.setTaskCompleted(success: false)
 
                     case .success:
@@ -43,18 +44,21 @@ final class BackgroundTaskScheduler {
 
     static func submitBackgroundTasks(for identifier: String) {
 
-        print("submitted background task with indentifier", identifier)
+        Log.info("Submitted background task with identifier: \(identifier)", category: .backgroundTask)
+
+        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: identifier)
 
         do {
             let backgroundAppRefreshTaskRequest = BGAppRefreshTaskRequest(identifier: identifier)
             
             // Fetch no earlier than 15 minutes from now
             backgroundAppRefreshTaskRequest.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+
             try BGTaskScheduler.shared.submit(backgroundAppRefreshTaskRequest)
-            print("Submitted task request")
+            Log.info("Task with identifier \(identifier) successfully submitted", category: .backgroundTask)
 
         } catch {
-            print("Failed to submit BGTask", error)
+            Log.error("Failed to submit task with identifier \(identifier)", error: error, category: .backgroundTask)
         }
     }
 }

@@ -12,14 +12,14 @@ protocol FeedItemsDisplayLogic: AnyObject {
     func display(title: NSAttributedString)
 }
 
-final class FeedItemsViewController: UIViewController, FeedItemsDisplayLogic {
+final class FeedItemsViewController: UITableViewController, FeedItemsDisplayLogic {
     var interactor: FeedItemsBusinessLogic?
     var router: (NSObjectProtocol & FeedItemsRoutingLogic & FeedItemsDataPassing)?
 
     // MARK: Object lifecycle
 
     init(viewModel: FeedViewModel) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .insetGrouped)
         setup(viewModel: viewModel)
     }
 

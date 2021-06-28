@@ -19,7 +19,7 @@ final class Item: Object {
     @objc dynamic var creator: String?
     @objc dynamic var image: String?
 
-    // These are not part of the data model
+    #warning("Remove these 2")
     @objc dynamic var isStarred = false
     @objc dynamic var isRead = false
 

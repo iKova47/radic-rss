@@ -33,8 +33,8 @@ final class FeedUpdateProgressView: BaseView {
 
     override func constrainSubviews() {
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
-            progressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
+            progressView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: trailingAnchor),
             progressView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
 
             label.centerXAnchor.constraint(equalTo: centerXAnchor),

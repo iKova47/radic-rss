@@ -67,10 +67,6 @@ final class RSSDataParser: NSObject, DataParser {
         parser.shouldReportNamespacePrefixes = false
         parser.shouldResolveExternalEntities = false
     }
-
-    deinit {
-        print("deinit RSSFeedParser")
-    }
 }
 
 // MARK: - XMLParserDelegate

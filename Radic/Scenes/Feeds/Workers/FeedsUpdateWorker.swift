@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-/// The sole purpose of this worker is to update the whole RSS feed 
+/// The sole purpose of this worker is to update the whole RSS feed
 final class FeedsUpdateWorker {
 
     typealias ReloadResult = (channel: Channel, isUpdated: Bool)
@@ -61,9 +61,9 @@ final class FeedsUpdateWorker {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("Feeds update completed")
+                    Log.info("Feed updating completed", category: .feeds)
                 case .failure(let error):
-                    print("Feeds update failed with error", error)
+                    Log.error("Feed updating failed", error: error, category: .feeds)
                     handler?(.failure(error))
                 }
             } receiveValue: { [weak self] result in
@@ -91,9 +91,5 @@ final class FeedsUpdateWorker {
 
     func cancelPreviousUpdateTask() {
         task?.cancel()
-    }
-    
-    deinit {
-        print("deinit FeedsUpdateWorker")
     }
 }

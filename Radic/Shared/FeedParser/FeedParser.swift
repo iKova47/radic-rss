@@ -40,10 +40,6 @@ final class FeedParser {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
-
-    deinit {
-        print("Deinit FeedParser")
-    }
 }
 
 // MARK: - Parser & error handling

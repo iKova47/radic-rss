@@ -78,10 +78,10 @@ final class FavIconWorker {
 
         do {
             try data.write(to: createCacheURL(from: url))
-            print("Successfully cached the image")
+            Log.info("Successfully cached image")
 
         } catch {
-            print("Failed to cache the image")
+            Log.error("Failed to cache image", error: error)
         }
     }
 
@@ -116,8 +116,6 @@ final class FavIconWorker {
     }
 
     // MARK: Cache URL
-
-
     /// This function takes a remote URL of the favIcon and returns the local URL of the cached file.
     /// The url may or may not exist on the disk.
     ///
