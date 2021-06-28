@@ -13,6 +13,7 @@ struct FeedViewModel: Hashable {
     let object: FeedModel
     let items: [Item]
     let title: String
+    let description: String?
     let numberOfUnreadItems: Int
 
     var homepageURL: URL? {
@@ -52,11 +53,7 @@ struct FeedViewModel: Hashable {
 
     var numberOfUnreadItemsFormatted: String {
         let count = numberOfUnreadItems
-        if count > 20 {
-            return "20+"
-        }
-
-        return String(describing: count)
+        return count > 20 ? "20+" : String(describing: count)
     }
 
     init(object: FeedModel) {
@@ -65,6 +62,7 @@ struct FeedViewModel: Hashable {
         id = object.hashValue
         items = object.channel == nil ? [] : Array(object.channel!.items)
         title = (object.title ?? object.channel?.title) ?? "Unnamed Feed"
+        description = object.channel?.desc
 
         numberOfUnreadItems = items.reduce(0) { result, item in
             result + (item.isRead ? 0 : 1)

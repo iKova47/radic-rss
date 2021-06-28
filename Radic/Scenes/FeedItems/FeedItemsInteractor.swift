@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol FeedItemsBusinessLogic {
     func fetchData()
@@ -18,7 +19,8 @@ protocol FeedItemsDataStore {
 
 final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
     var presenter: FeedItemsPresentationLogic?
-    var worker: FeedItemsWorker?
+    private let worker = FeedItemsWorker()
+    private var cancellables: Set<AnyCancellable> = []
 
     let viewModel: FeedViewModel
 
@@ -27,6 +29,15 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
     }
 
     func fetchData() {
+
+        if let channel = viewModel.object.channel {
+            worker
+                .fetchItems(for: channel)
+                .sink { [weak self] items in
+                    self?.presenter?.present(items: items)
+                }
+                .store(in: &cancellables)
+        }
 
         if let favIcon = viewModel.faviconURL {
             FavIconWorker.shared.fetch(from: favIcon) { image in

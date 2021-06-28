@@ -71,11 +71,6 @@ final class FeedsViewController: UITableViewController {
         configureTableView()
         addToolbar()
     }
-    
-    @objc
-    func refresh() {
-        
-    }
 }
 
 // MARK: - Tableview configuration & datasource

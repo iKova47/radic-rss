@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import Combine
 
 final class Repository<Model: Object> {
 
@@ -25,6 +26,14 @@ final class Repository<Model: Object> {
         }
 
         return realm.objects(Model.self)
+    }
+
+    func fetchResults(by filter: @escaping (Model) -> Bool) -> AnyPublisher<Model, Never> {
+        fetchResults()
+            .filter(filter)
+            .first
+            .publisher
+            .eraseToAnyPublisher()
     }
 
     func observableResults() -> RealmPublishers.Value<Results<Model>> {

@@ -27,7 +27,7 @@ final class FeedsContextMenuBuilder {
                 let openHomepage = UIAction(
                     title: "Open Homepage",
                     image: UIImage(systemName: "safari")) { [router] _ in
-                    router?.open(url: url)
+                    router?.navigate(to: url)
                 }
 
                 children.append(openHomepage)

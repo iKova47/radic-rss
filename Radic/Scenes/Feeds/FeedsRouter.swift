@@ -12,12 +12,10 @@ import SafariServices
 protocol FeedsRoutingLogic {
     func navigateToAddNewFeed()
     func navigateToFeedItems(for viewModel: FeedViewModel)
-    func open(url: URL)
+    func navigate(to url: URL)
 }
 
-protocol FeedsDataPassing {
-    
-}
+protocol FeedsDataPassing { }
 
 final class FeedsRouter: NSObject, FeedsRoutingLogic, FeedsDataPassing {
     weak var viewController: FeedsViewController?
@@ -27,7 +25,7 @@ final class FeedsRouter: NSObject, FeedsRoutingLogic, FeedsDataPassing {
         
     }
 
-    func open(url: URL) {
+    func navigate(to url: URL) {
         let vc = SFSafariViewController(url: url)
         viewController?.present(vc, animated: true)
     }

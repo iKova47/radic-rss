@@ -55,6 +55,8 @@
 		2CAA34382689EB86001AC4CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA340A2689EB86001AC4CF /* SceneDelegate.swift */; };
 		2CAA343C2689EF6F001AC4CF /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA343B2689EF6F001AC4CF /* Log.swift */; };
 		2CAA343F268A0D70001AC4CF /* DateFormatter+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA343E268A0D70001AC4CF /* DateFormatter+Default.swift */; };
+		2CAA3441268A1624001AC4CF /* FeedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA3440268A1624001AC4CF /* FeedItemViewModel.swift */; };
+		2CAA3444268A4356001AC4CF /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA3443268A4356001AC4CF /* FeedItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,8 @@
 		2CAA34392689EB9E001AC4CF /* Radic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAA343B2689EF6F001AC4CF /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2CAA343E268A0D70001AC4CF /* DateFormatter+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Default.swift"; sourceTree = "<group>"; };
+		2CAA3440268A1624001AC4CF /* FeedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewModel.swift; sourceTree = "<group>"; };
+		2CAA3443268A4356001AC4CF /* FeedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +218,7 @@
 		2CAA33D42689EB86001AC4CF /* FeedItems */ = {
 			isa = PBXGroup;
 			children = (
+				2CAA3442268A434D001AC4CF /* Views */,
 				2CAA33D52689EB86001AC4CF /* FeedItemsModels.swift */,
 				2CAA33D62689EB86001AC4CF /* FeedItemsWorker.swift */,
 				2CAA33D72689EB86001AC4CF /* FeedItemsRouter.swift */,
@@ -246,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				2CAA33DE2689EB86001AC4CF /* FeedViewModel.swift */,
+				2CAA3440268A1624001AC4CF /* FeedItemViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -407,6 +413,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2CAA3442268A434D001AC4CF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CAA3443268A4356001AC4CF /* FeedItemCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -495,12 +509,14 @@
 				2CAA34332689EB86001AC4CF /* BaseView.swift in Sources */,
 				2CAA34202689EB86001AC4CF /* UIImage+FavIcon.swift in Sources */,
 				2CAA34212689EB86001AC4CF /* FavIconWorker.swift in Sources */,
+				2CAA3444268A4356001AC4CF /* FeedItemCell.swift in Sources */,
 				2CAA34142689EB86001AC4CF /* FeedUpdateProgressView.swift in Sources */,
 				2CAA34192689EB86001AC4CF /* FeedItemsRouter.swift in Sources */,
 				2CAA34322689EB86001AC4CF /* BaseCollectionViewCell.swift in Sources */,
 				2CAA34302689EB86001AC4CF /* InsetsLabel.swift in Sources */,
 				2CAA341F2689EB86001AC4CF /* Repository.swift in Sources */,
 				2CAA342F2689EB86001AC4CF /* FeedParser.swift in Sources */,
+				2CAA3441268A1624001AC4CF /* FeedItemViewModel.swift in Sources */,
 				2CAA34262689EB86001AC4CF /* Colors.swift in Sources */,
 				2CAA341A2689EB86001AC4CF /* FeedItemsInteractor.swift in Sources */,
 				2CAA342C2689EB86001AC4CF /* Channel.swift in Sources */,
