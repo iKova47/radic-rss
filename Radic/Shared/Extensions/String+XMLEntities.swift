@@ -32,4 +32,9 @@ extension String {
 
         return value
     }
+
+    func removingHTMLElements() -> String {
+        replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }

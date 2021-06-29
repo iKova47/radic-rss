@@ -108,8 +108,6 @@ extension RSSDataParser: XMLParserDelegate {
             if let item = currentItem {
                 channel?.items.append(item)
                 currentItem = nil
-            } else {
-                #warning("Log error here")
             }
 
         } else if elementName == Tag.description {
@@ -118,10 +116,10 @@ extension RSSDataParser: XMLParserDelegate {
             // We don't care for the long descriptions, since we are only
             // displaying them in 2 rows, so we will limit their character count to max value of 100
             if let item = currentItem {
-                item.desc = String(item.desc?.prefix(100) ?? "")
+                item.desc = String(item.desc?.prefix(100) ?? "").removingHTMLElements()
 
             } else {
-                channel?.desc = String(channel?.desc?.prefix(100) ?? "")
+                channel?.desc = String(channel?.desc?.prefix(100) ?? "").removingHTMLElements()
             }
         }
 
