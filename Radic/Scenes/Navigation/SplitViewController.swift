@@ -17,6 +17,8 @@ final class SplitViewController: UISplitViewController, UISplitViewControllerDel
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        true
+        // Collapse only if the `secondaryViewController` is the `NoSelectionViewController`
+        // I think this makes the most sense from the UX perspective
+        secondaryViewController is NoSelectionViewController
     }
 }

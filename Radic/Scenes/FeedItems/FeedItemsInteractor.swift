@@ -10,7 +10,8 @@ import Combine
 
 protocol FeedItemsBusinessLogic {
     func fetchData()
-
+    func markRead(viewModel: FeedItemViewModel)
+    func toggleRead(viewModel: FeedItemViewModel)
 }
 
 protocol FeedItemsDataStore {
@@ -39,10 +40,22 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
                 .store(in: &cancellables)
         }
 
+        // Title
+        self.presenter?.present(title: self.viewModel.title, favIcon: nil)
+
         if let favIcon = viewModel.faviconURL {
             FavIconWorker.shared.fetch(from: favIcon) { image in
                 self.presenter?.present(title: self.viewModel.title, favIcon: image)
             }
         }
+    }
+
+    func markRead(viewModel: FeedItemViewModel) {
+
+
+    }
+
+    func toggleRead(viewModel: FeedItemViewModel) {
+
     }
 }

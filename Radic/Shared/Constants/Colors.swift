@@ -9,4 +9,5 @@ import UIKit
 
 enum Colors {
     static let accentColor = UIColor(named: "AccentColor")
+    static let backgroundColor = UIColor.systemGroupedBackground
 }

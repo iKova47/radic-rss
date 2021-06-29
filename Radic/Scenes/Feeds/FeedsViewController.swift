@@ -62,7 +62,8 @@ final class FeedsViewController: UITableViewController {
         defer {
             interactor?.loadData()
         }
-        
+
+        view.backgroundColor = Colors.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Feeds"
                 

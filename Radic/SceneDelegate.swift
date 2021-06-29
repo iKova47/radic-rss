@@ -19,7 +19,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedsNC = UINavigationController(rootViewController: feedsVC)
 
         let splitVC = SplitViewController()
-        splitVC.viewControllers = [feedsNC, EmptyFeedViewController()]
+        splitVC.viewControllers = [feedsNC, NoSelectionViewController()]
 
         window = UIWindow()
         window?.windowScene = scene

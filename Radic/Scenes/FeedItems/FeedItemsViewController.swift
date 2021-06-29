@@ -51,6 +51,7 @@ final class FeedItemsViewController: UITableViewController {
             interactor?.fetchData()
         }
 
+        view.backgroundColor = Colors.backgroundColor
         configureTableView()
     }
 }
@@ -97,6 +98,7 @@ extension FeedItemsViewController {
             return
         }
 
+        interactor?.toggleRead(viewModel: viewModel)
         router?.navigate(to: url)
     }
 }

@@ -22,7 +22,7 @@
 		2CAA34132689EB86001AC4CF /* FeedsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33CE2689EB86001AC4CF /* FeedsWorker.swift */; };
 		2CAA34142689EB86001AC4CF /* FeedUpdateProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D02689EB86001AC4CF /* FeedUpdateProgressView.swift */; };
 		2CAA34152689EB86001AC4CF /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D12689EB86001AC4CF /* FeedCell.swift */; };
-		2CAA34162689EB86001AC4CF /* EmptyFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D32689EB86001AC4CF /* EmptyFeedViewController.swift */; };
+		2CAA34162689EB86001AC4CF /* NoSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D32689EB86001AC4CF /* NoSelectionViewController.swift */; };
 		2CAA34172689EB86001AC4CF /* FeedItemsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D52689EB86001AC4CF /* FeedItemsModels.swift */; };
 		2CAA34182689EB86001AC4CF /* FeedItemsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D62689EB86001AC4CF /* FeedItemsWorker.swift */; };
 		2CAA34192689EB86001AC4CF /* FeedItemsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33D72689EB86001AC4CF /* FeedItemsRouter.swift */; };
@@ -75,7 +75,7 @@
 		2CAA33CE2689EB86001AC4CF /* FeedsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsWorker.swift; sourceTree = "<group>"; };
 		2CAA33D02689EB86001AC4CF /* FeedUpdateProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedUpdateProgressView.swift; sourceTree = "<group>"; };
 		2CAA33D12689EB86001AC4CF /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
-		2CAA33D32689EB86001AC4CF /* EmptyFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFeedViewController.swift; sourceTree = "<group>"; };
+		2CAA33D32689EB86001AC4CF /* NoSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoSelectionViewController.swift; sourceTree = "<group>"; };
 		2CAA33D52689EB86001AC4CF /* FeedItemsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemsModels.swift; sourceTree = "<group>"; };
 		2CAA33D62689EB86001AC4CF /* FeedItemsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemsWorker.swift; sourceTree = "<group>"; };
 		2CAA33D72689EB86001AC4CF /* FeedItemsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemsRouter.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 			children = (
 				2CAA33C22689EB86001AC4CF /* Navigation */,
 				2CAA33C42689EB86001AC4CF /* Feeds */,
-				2CAA33D22689EB86001AC4CF /* EmptyFeed */,
+				2CAA33D22689EB86001AC4CF /* NoSelection */,
 				2CAA33D42689EB86001AC4CF /* FeedItems */,
 			);
 			path = Scenes;
@@ -219,12 +219,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2CAA33D22689EB86001AC4CF /* EmptyFeed */ = {
+		2CAA33D22689EB86001AC4CF /* NoSelection */ = {
 			isa = PBXGroup;
 			children = (
-				2CAA33D32689EB86001AC4CF /* EmptyFeedViewController.swift */,
+				2CAA33D32689EB86001AC4CF /* NoSelectionViewController.swift */,
 			);
-			path = EmptyFeed;
+			path = NoSelection;
 			sourceTree = "<group>";
 		};
 		2CAA33D42689EB86001AC4CF /* FeedItems */ = {
@@ -553,7 +553,7 @@
 				2CAA340E2689EB86001AC4CF /* FeedsInteractor.swift in Sources */,
 				2CAA34232689EB86001AC4CF /* BackgroundTask.swift in Sources */,
 				2CAA34122689EB86001AC4CF /* FeedsUpdateWorker.swift in Sources */,
-				2CAA34162689EB86001AC4CF /* EmptyFeedViewController.swift in Sources */,
+				2CAA34162689EB86001AC4CF /* NoSelectionViewController.swift in Sources */,
 				2CAA34292689EB86001AC4CF /* DataParser.swift in Sources */,
 				2CAA34182689EB86001AC4CF /* FeedItemsWorker.swift in Sources */,
 				2CAA340B2689EB86001AC4CF /* SplitViewController.swift in Sources */,

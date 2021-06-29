@@ -27,6 +27,7 @@ final class FeedsRouter: NSObject, FeedsRoutingLogic, FeedsDataPassing {
 
     func navigate(to url: URL) {
         let vc = SFSafariViewController(url: url)
+        vc.preferredControlTintColor = Colors.accentColor
         viewController?.present(vc, animated: true)
     }
 

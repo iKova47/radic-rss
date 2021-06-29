@@ -20,6 +20,7 @@ final class FeedItemsRouter: NSObject, FeedItemsRoutingLogic, FeedItemsDataPassi
 
     func navigate(to url: URL) {
         let vc = SFSafariViewController(url: url)
+        vc.preferredControlTintColor = Colors.accentColor
         viewController?.present(vc, animated: true)
     }
 }
