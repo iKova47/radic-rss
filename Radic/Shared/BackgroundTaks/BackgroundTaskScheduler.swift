@@ -25,6 +25,10 @@ final class BackgroundTaskScheduler {
         BGTaskScheduler
             .shared
             .register(forTaskWithIdentifier: identifier, using: nil) { [backgroundTask] task in
+
+                // Schedule new task after this one is fired
+                BackgroundTaskScheduler.submitBackgroundTasks(for: identifier)
+
                 task.expirationHandler = {
                     task.setTaskCompleted(success: false)
                 }
@@ -51,7 +55,7 @@ final class BackgroundTaskScheduler {
         do {
             let backgroundAppRefreshTaskRequest = BGAppRefreshTaskRequest(identifier: identifier)
             
-            // Fetch no earlier than 15 minutes from now
+            // Let's try refresh in the 15 minutes... or so... 
             backgroundAppRefreshTaskRequest.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
 
             try BGTaskScheduler.shared.submit(backgroundAppRefreshTaskRequest)

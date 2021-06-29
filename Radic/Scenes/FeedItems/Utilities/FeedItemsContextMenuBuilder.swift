@@ -37,7 +37,9 @@ final class FeedItemsContextMenuBuilder {
             if let url = viewModel.url {
                 let openHomepage = UIAction(
                     title: "Open in browser",
-                    image: UIImage(systemName: "safari")) { [router] _ in
+                    image: UIImage(systemName: "safari")) { [router, interactor] _ in
+                    let request = FeedItems.MarkRead.Request(viewModel: viewModel, index: indexPath.row)
+                    interactor?.markRead(request: request)
                     router?.navigate(to: url)
                 }
 
