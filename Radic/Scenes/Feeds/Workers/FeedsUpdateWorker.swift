@@ -33,39 +33,55 @@ final class FeedsUpdateWorker {
 
         cancelPreviousUpdateTask()
 
-        let publishers = feeds.compactMap { [weak self] feed -> AnyPublisher<ReloadResult, FeedParseError>? in
-            guard let urlString = feed.url, let url = URL(string: urlString) else {
-                return nil
-            }
-
-            return FeedParser()
-                .parse(contentsOf: url)
-                .map { [weak self, feed] channel -> ReloadResult in
-
-                    var isUpdated = false
-
-                    if let oldBuildDate = feed.channel?.lastBuildDate, let newBuildDate = channel.lastBuildDate {
-                        isUpdated = newBuildDate > oldBuildDate
-                    }
-
-                    count += 1
-                    self?.progressHandler?(count/total)
-
-                    return (channel: channel, isUpdated: isUpdated)
+        let publishers = feeds
+            .filter { $0.channel != nil }
+            .compactMap { [weak self] feed -> AnyPublisher<ReloadResult, Never>? in
+                guard let urlString = feed.url, let url = URL(string: urlString) else {
+                    return nil
                 }
-                .eraseToAnyPublisher()
-        }
+
+                return FeedParser()
+                    .parse(contentsOf: url)
+                    .catch { [feed] error -> AnyPublisher<Channel, Never> in
+
+                        // This is safe to force unwrap, we already filtered all feeds and included only the ones where the channel is non nil
+                        let channel = feed.channel!
+
+                        let title = feed.title ?? channel.title ?? "Unnamed"
+                        Log.error("Failed to reload feed \(title)", error: error, category: .feeds)
+
+                        return Just(channel)
+                            .eraseToAnyPublisher()
+                    }
+                    .map { [weak self, feed] channel -> ReloadResult in
+
+                        var isUpdated = false
+
+                        // We only update the feeds by comparing the `lastBuildDate`
+                        // This will, eventually, result in a bug where the channels without the `lastBuildDate` will never get updated
+                        // Maybe fix the logic later
+                        if let oldBuildDate = feed.channel?.lastBuildDate, let newBuildDate = channel.lastBuildDate {
+                            isUpdated = newBuildDate > oldBuildDate
+                        }
+
+                        if !isUpdated {
+                            let title = feed.title ?? channel.title ?? "Unnamed"
+                            Log.debug("Feed not updated \(title)")
+                        }
+
+                        count += 1
+                        self?.progressHandler?(count/total)
+
+                        return (channel: channel, isUpdated: isUpdated)
+                    }
+                    .eraseToAnyPublisher()
+            }
 
         task = Publishers.MergeMany(publishers)
             .collect()
             .sink { completion in
-                switch completion {
-                case .finished:
-                    Log.info("Feed updating completed", category: .feeds)
-                case .failure(let error):
-                    Log.error("Feed updating failed", error: error, category: .feeds)
-                    handler?(.failure(error))
-                }
+                Log.info("Feed updating completed", category: .feeds)
+
             } receiveValue: { [weak self] result in
                 guard !result.isEmpty else {
                     return
@@ -74,6 +90,8 @@ final class FeedsUpdateWorker {
                 let updatedChannels = result
                     .filter { $0.isUpdated }
                     .map(\.channel)
+
+                Log.info("Feed update completed, \(updatedChannels.count) items are updated", category: .feeds)
 
                 self?.updateDb(with: updatedChannels)
 
