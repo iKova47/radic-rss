@@ -13,6 +13,7 @@ struct FeedItemViewModel: Hashable {
     let title: String
     let description: String?
     let creator: String?
+    let isRead: Bool
 
     var url: URL? {
         guard let link = item.link else {
@@ -27,6 +28,7 @@ struct FeedItemViewModel: Hashable {
         title = item.title ?? "Unnamed"
         description = item.desc
         creator = item.creator
+        isRead = item.isRead
     }
     
 }

@@ -65,9 +65,7 @@ final class FeedsViewController: UITableViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Feeds"
-        
-        view.backgroundColor = .systemGroupedBackground
-        
+                
         configureTableView()
         addToolbar()
     }

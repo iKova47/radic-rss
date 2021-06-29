@@ -6,12 +6,25 @@
 		<atom:link href="https://www.loopinsight.com/feed/" rel="self" type="application/rss+xml" />
 		<link>http://ivans-mpb-2018.local:8080/</link>
 		<description>Radic RSS reader homepage</description>
-		<lastBuildDate>Thu, 03 Jun 2021 19:34:04 +0000</lastBuildDate>
+		<lastBuildDate>Thu, 03 Jun 2021 19:54:04 +0000</lastBuildDate>
 		<language>en-US</language>
 		<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 		<sy:updateFrequency>
 	1	</sy:updateFrequency>
+
+		<item>
+			<title>The newest app features</title>
+			<link>https://www.theverge.com/2021/6/24/22548428/microsoft-windows-11-android-apps-support-amazon-store</link>
+			<pubDate>Thu, 24 Jun 2021 19:23:04 +0000</pubDate>
+			<dc:creator>
+				<![CDATA[Rss Reader App]]>
+			</dc:creator>
+			<description>
+				<![CDATA[&amp; &quot; &#39; &gt; &lt;]]>
+			</description>
+			<guid>3</guid>
+		</item>
 
 		<item>
 			<title>This is an example RSS feed</title>
@@ -23,6 +36,20 @@
 			<description>
 				<![CDATA[Example item description]]>
 			</description>
+			<guid>2</guid>
+		</item>
+
+		<item>
+			<title>What’s new in the app</title>
+			<link>https://www.theverge.com/2021/6/24/22548428/microsoft-windows-11-android-apps-support-amazon-storehguhg</link>
+			<pubDate>Thu, 24 Jun 2021 19:23:04 +0000</pubDate>
+			<dc:creator>
+				<![CDATA[Rss Reader App]]>
+			</dc:creator>
+			<description>
+				<![CDATA[The new app version is awesome!!]]>
+			</description>
+			<guid>1</guid>
 		</item>
 
 

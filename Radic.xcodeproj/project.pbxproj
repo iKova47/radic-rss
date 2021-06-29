@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0D53CB268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */; };
 		2C67364E2686170C003FB3E0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364D2686170C003FB3E0 /* Realm */; };
 		2C6736502686170C003FB3E0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364F2686170C003FB3E0 /* RealmSwift */; };
 		2CAA340B2689EB86001AC4CF /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33C32689EB86001AC4CF /* SplitViewController.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsContextMenuBuilder.swift; sourceTree = "<group>"; };
 		2CAA33C32689EB86001AC4CF /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2CAA33C52689EB86001AC4CF /* FeedsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsRouter.swift; sourceTree = "<group>"; };
 		2CAA33C62689EB86001AC4CF /* FeedsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsModels.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0D53C9268B3705000D0A53 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		2C1BB9232685E46A00DECAFD = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 		2CAA33D42689EB86001AC4CF /* FeedItems */ = {
 			isa = PBXGroup;
 			children = (
+				2C0D53C9268B3705000D0A53 /* Utilities */,
 				2CAA3442268A434D001AC4CF /* Views */,
 				2CAA33D52689EB86001AC4CF /* FeedItemsModels.swift */,
 				2CAA33D62689EB86001AC4CF /* FeedItemsWorker.swift */,
@@ -501,6 +512,7 @@
 				2CAA343C2689EF6F001AC4CF /* Log.swift in Sources */,
 				2CAA34282689EB86001AC4CF /* FeedModel.swift in Sources */,
 				2CAA34172689EB86001AC4CF /* FeedItemsModels.swift in Sources */,
+				2C0D53CB268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift in Sources */,
 				2CAA34102689EB86001AC4CF /* FeedsContextMenuBuilder.swift in Sources */,
 				2CAA34362689EB86001AC4CF /* AppDelegate.swift in Sources */,
 				2CAA341B2689EB86001AC4CF /* FeedItemsPresenter.swift in Sources */,

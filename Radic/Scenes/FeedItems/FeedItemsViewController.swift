@@ -51,8 +51,6 @@ final class FeedItemsViewController: UITableViewController {
             interactor?.fetchData()
         }
 
-        view.backgroundColor = .systemBackground
-
         configureTableView()
     }
 }
@@ -62,6 +60,9 @@ private extension FeedItemsViewController {
 
     func configureTableView() {
         tableView.register(FeedItemCell.self, forCellReuseIdentifier: "FeedItemCell")
+        tableView.estimatedRowHeight = 82
+        tableView.rowHeight = UITableView.automaticDimension
+
         datasource = createDatasource()
     }
 
@@ -100,18 +101,18 @@ extension FeedItemsViewController {
     }
 }
 
-//// MARK: - Context menu
-//extension FeedItemsViewController {
-//
-//    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//
-//        guard let viewModel = datasource?.itemIdentifier(for: indexPath) else {
-//            return nil
-//        }
-//
-//        return FeedsContextMenuBuilder.build(viewController: self, viewModel: viewModel)
-//    }
-//}
+// MARK: - Context menu
+extension FeedItemsViewController {
+
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+        guard let viewModel = datasource?.itemIdentifier(for: indexPath) else {
+            return nil
+        }
+
+        return FeedItemsContextMenuBuilder.build(viewController: self, viewModel: viewModel)
+    }
+}
 
 // MARK: - FeedItemsDisplayLogic
 extension FeedItemsViewController: FeedItemsDisplayLogic {
@@ -120,6 +121,7 @@ extension FeedItemsViewController: FeedItemsDisplayLogic {
 
         let label = UILabel()
         label.attributedText = title
+        label.textColor = .label
         label.sizeToFit()
 
         navigationItem.titleView = label
