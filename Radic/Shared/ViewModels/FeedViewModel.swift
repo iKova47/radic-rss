@@ -44,11 +44,7 @@ struct FeedViewModel: Hashable {
     }
 
     var feedURL: URL? {
-        guard let link = object.url else {
-            return nil
-        }
-
-        return URL(string: link)
+        URL(string: object.url)
     }
 
     var numberOfUnreadItemsFormatted: String {

@@ -216,6 +216,8 @@ private extension FeedsViewController {
         addNewFeed(url: "https://ericasadun.com/feed", title: nil)
         addNewFeed(url: "https://rosemaryorchard.com/blog/feed/", title: nil)
         addNewFeed(url: "http://ivans-mpb-2018.local:8080/example1.rss", title: nil)
+        addNewFeed(url: "https://www.loopinsight.com/feed/", title: nil)
+        addNewFeed(url: "https://sixcolors.com/?feed=rss", title: nil)
     }
     
     func addNewFeed(url urlString: String, title: String?) {
@@ -228,12 +230,7 @@ private extension FeedsViewController {
         FeedParser()
             .parse(contentsOf: url)
             .map { channel -> FeedModel in
-                let object = FeedModel()
-                object.title = title
-                object.url = urlString
-                object.channel = channel
-                
-                return object
+                FeedModel(url: urlString, title: title, channel: channel)
             }
             .sink { completion in
                 switch completion {

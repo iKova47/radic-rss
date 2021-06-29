@@ -12,6 +12,10 @@ import Combine
 final class Repository<Model: Object> {
 
     // MARK: - Fetching
+    func fetch(by filter: @escaping (Model) -> Bool) -> Model? {
+        fetchResults().filter(filter).first
+    }
+
     func fetchAll() -> [Model] {
         Array(fetchResults())
     }

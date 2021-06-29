@@ -46,8 +46,13 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
 
     func fetchTitle() {
 
-        presenter?.present(title: self.viewModel.title, favIcon: nil)
+        // We will send just the title without the favIcon first
+        presenter?.present(title: viewModel.title, favIcon: nil)
 
+        // And then if the favIconURL exists, try to fetch the favicon and set the
+        // new title with the new favicon
+        // This is done so that we don't have a weird UX behaviour where if the
+        // favIcon is unreachable, the title shows after a second or two.
         if let favIcon = viewModel.faviconURL {
             FavIconWorker.shared.fetch(from: favIcon) { image in
                 self.presenter?.present(title: self.viewModel.title, favIcon: image)

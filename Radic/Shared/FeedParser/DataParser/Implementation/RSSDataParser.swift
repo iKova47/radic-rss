@@ -111,6 +111,18 @@ extension RSSDataParser: XMLParserDelegate {
             } else {
                 #warning("Log error here")
             }
+
+        } else if elementName == Tag.description {
+
+            // Descriptions for some feeds can be quite big.
+            // We don't care for the long descriptions, since we are only
+            // displaying them in 2 rows, so we will limit their character count to max value of 100
+            if let item = currentItem {
+                item.desc = String(item.desc?.prefix(100) ?? "")
+
+            } else {
+                channel?.desc = String(channel?.desc?.prefix(100) ?? "")
+            }
         }
 
         currentElementName = nil
@@ -133,11 +145,11 @@ extension RSSDataParser: XMLParserDelegate {
 
     // MARK: - Errors
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-
+        #warning("Handle this error")
     }
 
     func parser(_ parser: XMLParser, validationErrorOccurred validationError: Error) {
-
+        #warning("Handle this error")
     }
 }
 

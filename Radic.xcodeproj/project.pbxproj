@@ -66,6 +66,7 @@
 		2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsContextMenuBuilder.swift; sourceTree = "<group>"; };
 		2C0D53CC268B3F5B000D0A53 /* String+XMLEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+XMLEntities.swift"; sourceTree = "<group>"; };
 		2C0D53CF268B694B000D0A53 /* SharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingController.swift; sourceTree = "<group>"; };
+		2C0D53D1268B6C0E000D0A53 /* Radic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Radic.entitlements; sourceTree = "<group>"; };
 		2CAA33C32689EB86001AC4CF /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2CAA33C52689EB86001AC4CF /* FeedsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsRouter.swift; sourceTree = "<group>"; };
 		2CAA33C62689EB86001AC4CF /* FeedsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsModels.swift; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 		2CAA33C02689EB86001AC4CF /* Radic */ = {
 			isa = PBXGroup;
 			children = (
+				2C0D53D1268B6C0E000D0A53 /* Radic.entitlements */,
 				2CAA34092689EB86001AC4CF /* Info.plist */,
 				2CAA34082689EB86001AC4CF /* AppDelegate.swift */,
 				2CAA340A2689EB86001AC4CF /* SceneDelegate.swift */,
@@ -709,6 +711,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Radic/Radic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FPQMXJHG8J;
 				INFOPLIST_FILE = "$(SRCROOT)/Radic/Info.plist";
@@ -718,6 +721,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.radic.rss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -728,6 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Radic/Radic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FPQMXJHG8J;
 				INFOPLIST_FILE = "$(SRCROOT)/Radic/Info.plist";
@@ -737,6 +742,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.radic.rss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

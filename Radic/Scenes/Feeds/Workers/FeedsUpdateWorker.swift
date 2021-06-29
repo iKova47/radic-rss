@@ -36,7 +36,8 @@ final class FeedsUpdateWorker {
         let publishers = feeds
             .filter { $0.channel != nil }
             .compactMap { [weak self] feed -> AnyPublisher<ReloadResult, Never>? in
-                guard let urlString = feed.url, let url = URL(string: urlString) else {
+                guard let url = URL(string: feed.url) else {
+                    // This will probably never fail
                     return nil
                 }
 
