@@ -13,7 +13,7 @@ protocol FeedsDisplayLogic: AnyObject {
     func displayRefresh(progress: Float, formattedProgress: String)
 }
 
-final class FeedsViewController: UITableViewController {
+final class FeedsViewController: UITableViewController, SharingController {
     var interactor: FeedsBusinessLogic?
     var router: (NSObjectProtocol & FeedsRoutingLogic & FeedsDataPassing)?
     

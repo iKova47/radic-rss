@@ -41,11 +41,11 @@ final class Repository<Model: Object> {
     }
 
     // MARK: - Updating
-    func update(object: Model, handler: @escaping (Model) -> Void) {
+    func update(handler: @escaping () -> Void) {
         let realm = try? Realm()
 
         try? realm?.write {
-            handler(object)
+            handler()
         }
     }
 

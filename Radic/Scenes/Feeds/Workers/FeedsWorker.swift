@@ -16,8 +16,6 @@ final class FeedsWorker {
     private var cancellables: Set<AnyCancellable> = []
     private let repository = Repository<FeedModel>()
     private let parser = FeedParser()
-
-    private let channelRepostory = Repository<Channel>()
 }
 
 // MARK: - DB work
@@ -36,7 +34,6 @@ extension FeedsWorker {
                 }
             } receiveValue: { [weak self] feeds in
                 self?.feeds = Array(feeds)
-
             }
             .store(in: &cancellables)
     }
@@ -46,13 +43,13 @@ extension FeedsWorker {
     }
 
     func rename(model: FeedModel, title: String) {
-        repository.update(object: model) { model in
+        repository.update { [model] in
             model.title = title
         }
     }
 
     func markAllAsRead(model: FeedModel) {
-        repository.update(object: model) { model in
+        repository.update { [model] in
             model.channel?.items.forEach { $0.isRead = true }
         }
     }

@@ -14,6 +14,7 @@ struct FeedItemViewModel: Hashable {
     let description: String?
     let creator: String?
     let isRead: Bool
+    let dateString: String?
 
     var url: URL? {
         guard let link = item.link else {
@@ -29,6 +30,13 @@ struct FeedItemViewModel: Hashable {
         description = item.desc
         creator = item.creator
         isRead = item.isRead
+
+        if let pubDate = item.pubDate {
+            dateString = DateFormatter.monthAndDay.string(from: pubDate)
+
+        } else {
+            dateString = nil
+        }
     }
     
 }

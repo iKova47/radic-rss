@@ -11,7 +11,8 @@ final class FeedItemsContextMenuBuilder {
 
     static func build(
         viewController: FeedItemsViewController,
-        viewModel: FeedItemViewModel
+        viewModel: FeedItemViewModel,
+        indexPath: IndexPath
     ) -> UIContextMenuConfiguration {
 
         let identifier = String(describing: viewModel.hashValue) as NSString
@@ -26,8 +27,9 @@ final class FeedItemsContextMenuBuilder {
             let toggleReadTitle = viewModel.isRead ? "Mark unread" : "Mark read"
             let toggleRead = UIAction(
                 title: toggleReadTitle,
-                image: UIImage(named: "")) { _ in
-
+                image: UIImage(named: "")) { [interactor] _ in
+                let request = FeedItems.MarkRead.Request(viewModel: viewModel, index: indexPath.row)
+                interactor?.toggleRead(request: request)
             }
 
             children.append(toggleRead)
@@ -41,42 +43,14 @@ final class FeedItemsContextMenuBuilder {
 
                 let share = UIAction(
                     title: "Share",
-                    image: UIImage(systemName: "square.and.arrow.up")) { [viewController, interactor] _ in
-//                    let request = Feeds.Share.Request(url: url, viewController: viewController)
-//                    interactor?.share(request: request)
+                    image: UIImage(systemName: "square.and.arrow.up")) { [viewController] _ in
+                    let request = Share.Request(items: [url], viewController: viewController)
+                    viewController.share(request: request)
                 }
 
                 let submenu = UIMenu(title: "", image: nil, options: .displayInline, children: [openHomepage, share])
                 children.append(submenu)
             }
-
-//            if viewModel.numberOfUnreadItems > 0 {
-//                let markAllAsRead = UIAction(
-//                    title: "Mark all as read in “\(viewModel.title)”",
-//                    image: UIImage(systemName: "checkmark.square")) { [interactor] _ in
-//                    let request = Feeds.MarkAllItemsAsRead.Request(viewModel: viewModel)
-//                    interactor?.markAllAsRead(request: request)
-//                }
-//
-//                children.append(markAllAsRead)
-//            }
-
-//            let rename = UIAction(
-//                title: "Rename",
-//                image: UIImage(systemName: "pencil.and.outline")) { [viewController, interactor] _ in
-//                let request = Feeds.Rename.Request(viewController: viewController, viewModel: viewModel)
-//                interactor?.rename(request: request)
-//            }
-//
-//            let remove = UIAction(
-//                title: "Remove",
-//                image: UIImage(systemName: "trash"),
-//                attributes: .destructive) { [viewController, interactor] _ in
-//                let request = Feeds.Remove.Request(viewController: viewController, viewModel: viewModel)
-//                interactor?.remove(request: request)
-//            }
-
-//            let submenu = UIMenu(title: "", image: nil, options: .displayInline, children: [rename, remove])
 
             return UIMenu(title: "", image: nil, children: children)
         }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C0D53CB268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */; };
 		2C0D53CD268B3F5B000D0A53 /* String+XMLEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D53CC268B3F5B000D0A53 /* String+XMLEntities.swift */; };
+		2C0D53D0268B694B000D0A53 /* SharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D53CF268B694B000D0A53 /* SharingController.swift */; };
 		2C67364E2686170C003FB3E0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364D2686170C003FB3E0 /* Realm */; };
 		2C6736502686170C003FB3E0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364F2686170C003FB3E0 /* RealmSwift */; };
 		2CAA340B2689EB86001AC4CF /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33C32689EB86001AC4CF /* SplitViewController.swift */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsContextMenuBuilder.swift; sourceTree = "<group>"; };
 		2C0D53CC268B3F5B000D0A53 /* String+XMLEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+XMLEntities.swift"; sourceTree = "<group>"; };
+		2C0D53CF268B694B000D0A53 /* SharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingController.swift; sourceTree = "<group>"; };
 		2CAA33C32689EB86001AC4CF /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2CAA33C52689EB86001AC4CF /* FeedsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsRouter.swift; sourceTree = "<group>"; };
 		2CAA33C62689EB86001AC4CF /* FeedsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsModels.swift; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 				2C0D53CA268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2C0D53CE268B68CE000D0A53 /* Traits */ = {
+			isa = PBXGroup;
+			children = (
+				2C0D53CF268B694B000D0A53 /* SharingController.swift */,
+			);
+			path = Traits;
 			sourceTree = "<group>";
 		};
 		2C1BB9232685E46A00DECAFD = {
@@ -245,6 +255,7 @@
 		2CAA33DC2689EB86001AC4CF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2C0D53CE268B68CE000D0A53 /* Traits */,
 				2CAA343D268A0D64001AC4CF /* Extensions */,
 				2CAA343A2689EF67001AC4CF /* Log */,
 				2CAA33DD2689EB86001AC4CF /* ViewModels */,
@@ -552,6 +563,7 @@
 				2CAA34272689EB86001AC4CF /* LocalNotificationWorker.swift in Sources */,
 				2CAA340E2689EB86001AC4CF /* FeedsInteractor.swift in Sources */,
 				2CAA34232689EB86001AC4CF /* BackgroundTask.swift in Sources */,
+				2C0D53D0268B694B000D0A53 /* SharingController.swift in Sources */,
 				2CAA34122689EB86001AC4CF /* FeedsUpdateWorker.swift in Sources */,
 				2CAA34162689EB86001AC4CF /* NoSelectionViewController.swift in Sources */,
 				2CAA34292689EB86001AC4CF /* DataParser.swift in Sources */,

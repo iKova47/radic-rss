@@ -46,6 +46,7 @@ final class FeedItemCell: BaseTableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 14)
+        label.textAlignment = .right
         return label
     }()
 
@@ -106,6 +107,7 @@ final class FeedItemCell: BaseTableViewCell {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         creatorLabel.text = viewModel.creator
-        dateLabel.text = "2 Jun"
+        readIndicatorView.isHidden = viewModel.isRead
+        dateLabel.text = viewModel.dateString
     }
 }

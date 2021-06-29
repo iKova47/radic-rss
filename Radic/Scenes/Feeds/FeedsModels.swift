@@ -30,13 +30,6 @@ enum Feeds {
         }
     }
 
-    enum Share {
-        struct Request {
-            let url: URL
-            let viewController: UIViewController
-        }
-    }
-
     enum Refresh {
         struct Response {
             let progress: Float

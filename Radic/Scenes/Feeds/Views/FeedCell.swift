@@ -46,7 +46,6 @@ final class FeedCell: BaseTableViewCell {
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 11
         label.textAlignment = .center
-        label.setContentHuggingPriority(.required, for: .vertical)
         return label
     }()
 

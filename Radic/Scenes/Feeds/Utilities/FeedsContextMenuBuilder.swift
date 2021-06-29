@@ -34,9 +34,9 @@ final class FeedsContextMenuBuilder {
 
                 let share = UIAction(
                     title: "Share",
-                    image: UIImage(systemName: "square.and.arrow.up")) { [viewController, interactor] _ in
-                    let request = Feeds.Share.Request(url: url, viewController: viewController)
-                    interactor?.share(request: request)
+                    image: UIImage(systemName: "square.and.arrow.up")) { [viewController] _ in
+                    let request = Share.Request(items: [url], viewController: viewController)
+                    viewController.share(request: request)
                 }
 
                 children.append(share)

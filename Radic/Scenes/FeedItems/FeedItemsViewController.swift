@@ -13,7 +13,7 @@ protocol FeedItemsDisplayLogic: AnyObject {
     func display(viewModels: [FeedItemViewModel])
 }
 
-final class FeedItemsViewController: UITableViewController {
+final class FeedItemsViewController: UITableViewController, SharingController {
     var interactor: FeedItemsBusinessLogic?
     var router: (NSObjectProtocol & FeedItemsRoutingLogic & FeedItemsDataPassing)?
 
@@ -98,7 +98,9 @@ extension FeedItemsViewController {
             return
         }
 
-        interactor?.toggleRead(viewModel: viewModel)
+        let request = FeedItems.MarkRead.Request(viewModel: viewModel, index: indexPath.row)
+
+        interactor?.markRead(request: request)
         router?.navigate(to: url)
     }
 }
@@ -112,7 +114,11 @@ extension FeedItemsViewController {
             return nil
         }
 
-        return FeedItemsContextMenuBuilder.build(viewController: self, viewModel: viewModel)
+        return FeedItemsContextMenuBuilder.build(
+            viewController: self,
+            viewModel: viewModel,
+            indexPath: indexPath
+        )
     }
 }
 
@@ -124,8 +130,7 @@ extension FeedItemsViewController: FeedItemsDisplayLogic {
         let label = UILabel()
         label.attributedText = title
         label.textColor = .label
-        label.sizeToFit()
-
+        
         navigationItem.titleView = label
     }
 

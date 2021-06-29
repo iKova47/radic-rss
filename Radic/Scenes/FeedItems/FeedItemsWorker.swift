@@ -10,16 +10,25 @@ import Combine
 
 final class FeedItemsWorker {
 
-    let repository = Repository<Channel>()
+    private let channelRepository = Repository<Channel>()
+    private let itemRepository = Repository<Item>()
+    private var cancellables: Set<AnyCancellable> = []
 
-    func fetchItems(for channel: Channel) -> AnyPublisher<[Item], Never> {
-        repository
-            .fetchResults { [channel] newChannel in
-                newChannel.link == channel.link
-            }
-            .map { channel -> [Item] in
-                Array(channel.items)
-            }
-            .eraseToAnyPublisher()
+    @Published
+    var items: [Item] = []
+
+    // MARK: - Lifecycle
+    func loadItems(for channel: Channel) {
+        self.items = Array(channel.items)
+    }
+
+    func markRead(isRead: Bool, item: Item, index: Int) {
+        itemRepository.update { [weak self] in
+            guard let self = self else { return }
+
+            let items = self.items
+            items[index].isRead = isRead
+            self.items = items
+        }
     }
 }

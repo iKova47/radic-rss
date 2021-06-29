@@ -10,8 +10,9 @@ import Combine
 
 protocol FeedItemsBusinessLogic {
     func fetchData()
-    func markRead(viewModel: FeedItemViewModel)
-    func toggleRead(viewModel: FeedItemViewModel)
+    func fetchTitle()
+    func markRead(request: FeedItems.MarkRead.Request)
+    func toggleRead(request: FeedItems.MarkRead.Request)
 }
 
 protocol FeedItemsDataStore {
@@ -30,18 +31,22 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
     }
 
     func fetchData() {
+        fetchTitle()
 
         if let channel = viewModel.object.channel {
-            worker
-                .fetchItems(for: channel)
-                .sink { [weak self] items in
-                    self?.presenter?.present(items: items)
-                }
-                .store(in: &cancellables)
-        }
 
-        // Title
-        self.presenter?.present(title: self.viewModel.title, favIcon: nil)
+            worker.loadItems(for: channel)
+
+            worker.$items.sink { [weak self] items in
+                self?.presenter?.present(items: items)
+            }
+            .store(in: &cancellables)
+        }
+    }
+
+    func fetchTitle() {
+
+        presenter?.present(title: self.viewModel.title, favIcon: nil)
 
         if let favIcon = viewModel.faviconURL {
             FavIconWorker.shared.fetch(from: favIcon) { image in
@@ -50,12 +55,16 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
         }
     }
 
-    func markRead(viewModel: FeedItemViewModel) {
+    func markRead(request: FeedItems.MarkRead.Request) {
+        guard !request.viewModel.isRead else {
+            return
+        }
 
-
+        worker.markRead(isRead: true, item: request.viewModel.item, index: request.index)
     }
 
-    func toggleRead(viewModel: FeedItemViewModel) {
-
+    func toggleRead(request: FeedItems.MarkRead.Request) {
+        let isRead = !request.viewModel.isRead
+        worker.markRead(isRead: isRead, item: request.viewModel.item, index: request.index)
     }
 }

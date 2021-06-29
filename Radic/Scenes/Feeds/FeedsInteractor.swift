@@ -14,7 +14,6 @@ protocol FeedsBusinessLogic {
 
     func remove(request: Feeds.Remove.Request)
     func rename(request: Feeds.Rename.Request)
-    func share(request: Feeds.Share.Request)
     func markAllAsRead(request: Feeds.MarkAllItemsAsRead.Request)
 }
 
@@ -103,10 +102,5 @@ final class FeedsInteractor: FeedsBusinessLogic, FeedsDataStore {
 
     func markAllAsRead(request: Feeds.MarkAllItemsAsRead.Request) {
         worker.markAllAsRead(model: request.viewModel.object)
-    }
-
-    func share(request: Feeds.Share.Request) {
-        let controller = UIActivityViewController(activityItems: [request.url], applicationActivities: nil)
-        request.viewController.present(controller, animated: true)
     }
 }
