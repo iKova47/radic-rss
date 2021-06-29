@@ -20,6 +20,7 @@ final class RSSDataParser: NSObject, DataParser {
             static let root = "item"
             static let pubDate = "pubDate"
             static let creator = "dc:creator"
+            static let author = "author"
             static let image = "image"
             static let guid = "guid"
         }
@@ -117,7 +118,7 @@ extension RSSDataParser: XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
 
-        let string = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        let string = string.trimmingCharacters(in: .whitespacesAndNewlines).xmlUnescaped()
 
         guard !string.isEmpty else {
             return
@@ -151,14 +152,16 @@ private extension RSSDataParser {
 
         switch currentElementName {
         case Tag.title:
-            item.title = value
+            let title = item.title ?? ""
+            item.title = title + value
         case Tag.description:
-            item.desc = value
+            let desc = item.desc ?? ""
+            item.desc = desc + value
         case Tag.link:
             item.link = value
         case Tag.Item.pubDate:
             item.pubDate = dateFormatter.date(from: value)
-        case Tag.Item.creator:
+        case Tag.Item.creator, Tag.Item.author:
             item.creator = value
         case Tag.Item.image:
             item.image = value
