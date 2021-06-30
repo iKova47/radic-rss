@@ -8,5 +8,6 @@
 import UIKit
 
 enum Images {
-    static let placeholder = UIImage(named: "placeholder")
+    static let placeholderSmall = UIImage(named: "placeholderSmall")
+    static let placeholderLarge = UIImage(named: "placeholderLarge")
 }

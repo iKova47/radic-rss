@@ -15,6 +15,7 @@ struct FeedItemViewModel: Hashable {
     let author: String?
     let isRead: Bool
     let dateString: String?
+    let imageURL: URL?
     
     var url: URL? {
         guard let link = item.link else {
@@ -40,6 +41,16 @@ struct FeedItemViewModel: Hashable {
             
         } else {
             dateString = nil
+        }
+
+        if
+            let enclosure = item.enclosure,
+            MimeType.allCases.contains(where: { $0.rawValue == enclosure.type })
+        {
+            imageURL = URL(string: enclosure.url)
+
+        } else {
+            imageURL = nil
         }
     }
 }

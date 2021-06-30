@@ -43,6 +43,14 @@ struct FeedViewModel: Hashable {
         homepageURL?.appendingPathComponent("favicon.ico")
     }
 
+    var imageURL: URL? {
+        guard let urlString = object.channel?.image?.url else {
+            return nil
+        }
+
+        return URL(string: urlString)
+    }
+
     var feedURL: URL? {
         URL(string: object.url)
     }

@@ -14,6 +14,8 @@
 		2C67364E2686170C003FB3E0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364D2686170C003FB3E0 /* Realm */; };
 		2C6736502686170C003FB3E0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364F2686170C003FB3E0 /* RealmSwift */; };
 		2C7A12C4268C5BA8008BE91C /* EnclosureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */; };
+		2C7A12C6268C87AF008BE91C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A12C5268C87AF008BE91C /* MimeType.swift */; };
+		2C7A12C9268C8CC1008BE91C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C7A12C8268C8CC1008BE91C /* Kingfisher */; };
 		2CAA340B2689EB86001AC4CF /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33C32689EB86001AC4CF /* SplitViewController.swift */; };
 		2CAA340C2689EB86001AC4CF /* FeedsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33C52689EB86001AC4CF /* FeedsRouter.swift */; };
 		2CAA340D2689EB86001AC4CF /* FeedsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33C62689EB86001AC4CF /* FeedsModels.swift */; };
@@ -35,8 +37,7 @@
 		2CAA341D2689EB86001AC4CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CAA33DB2689EB86001AC4CF /* Assets.xcassets */; };
 		2CAA341E2689EB86001AC4CF /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33DE2689EB86001AC4CF /* FeedViewModel.swift */; };
 		2CAA341F2689EB86001AC4CF /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E02689EB86001AC4CF /* Repository.swift */; };
-		2CAA34202689EB86001AC4CF /* UIImage+FavIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E22689EB86001AC4CF /* UIImage+FavIcon.swift */; };
-		2CAA34212689EB86001AC4CF /* FavIconWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E32689EB86001AC4CF /* FavIconWorker.swift */; };
+		2CAA34202689EB86001AC4CF /* UIImage+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E22689EB86001AC4CF /* UIImage+Kingfisher.swift */; };
 		2CAA34222689EB86001AC4CF /* BackgroundTaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E52689EB86001AC4CF /* BackgroundTaskScheduler.swift */; };
 		2CAA34232689EB86001AC4CF /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E72689EB86001AC4CF /* BackgroundTask.swift */; };
 		2CAA34242689EB86001AC4CF /* FeedUpdateBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA33E92689EB86001AC4CF /* FeedUpdateBackgroundTask.swift */; };
@@ -71,6 +72,7 @@
 		2C0D53CF268B694B000D0A53 /* SharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingController.swift; sourceTree = "<group>"; };
 		2C0D53D1268B6C0E000D0A53 /* Radic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Radic.entitlements; sourceTree = "<group>"; };
 		2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureModel.swift; sourceTree = "<group>"; };
+		2C7A12C5268C87AF008BE91C /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		2CAA33C32689EB86001AC4CF /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2CAA33C52689EB86001AC4CF /* FeedsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsRouter.swift; sourceTree = "<group>"; };
 		2CAA33C62689EB86001AC4CF /* FeedsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsModels.swift; sourceTree = "<group>"; };
@@ -92,8 +94,7 @@
 		2CAA33DB2689EB86001AC4CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CAA33DE2689EB86001AC4CF /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		2CAA33E02689EB86001AC4CF /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		2CAA33E22689EB86001AC4CF /* UIImage+FavIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FavIcon.swift"; sourceTree = "<group>"; };
-		2CAA33E32689EB86001AC4CF /* FavIconWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavIconWorker.swift; sourceTree = "<group>"; };
+		2CAA33E22689EB86001AC4CF /* UIImage+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Kingfisher.swift"; sourceTree = "<group>"; };
 		2CAA33E52689EB86001AC4CF /* BackgroundTaskScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTaskScheduler.swift; sourceTree = "<group>"; };
 		2CAA33E72689EB86001AC4CF /* BackgroundTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		2CAA33E92689EB86001AC4CF /* FeedUpdateBackgroundTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedUpdateBackgroundTask.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C7A12C9268C8CC1008BE91C /* Kingfisher in Frameworks */,
 				2C6736502686170C003FB3E0 /* RealmSwift in Frameworks */,
 				2C67364E2686170C003FB3E0 /* Realm in Frameworks */,
 			);
@@ -266,7 +268,6 @@
 				2CAA343A2689EF67001AC4CF /* Log */,
 				2CAA33DD2689EB86001AC4CF /* ViewModels */,
 				2CAA33DF2689EB86001AC4CF /* Repository */,
-				2CAA33E12689EB86001AC4CF /* FavIconWorker */,
 				2CAA33E42689EB86001AC4CF /* BackgroundTaks */,
 				2CAA33EA2689EB86001AC4CF /* Constants */,
 				2CAA33ED2689EB86001AC4CF /* LocalNotifications */,
@@ -292,15 +293,6 @@
 				2CAA33E02689EB86001AC4CF /* Repository.swift */,
 			);
 			path = Repository;
-			sourceTree = "<group>";
-		};
-		2CAA33E12689EB86001AC4CF /* FavIconWorker */ = {
-			isa = PBXGroup;
-			children = (
-				2CAA33E22689EB86001AC4CF /* UIImage+FavIcon.swift */,
-				2CAA33E32689EB86001AC4CF /* FavIconWorker.swift */,
-			);
-			path = FavIconWorker;
 			sourceTree = "<group>";
 		};
 		2CAA33E42689EB86001AC4CF /* BackgroundTaks */ = {
@@ -397,6 +389,7 @@
 				2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */,
 				2C0B3DCC268C5603006E3A5B /* ImageModel.swift */,
 				2CAA33F92689EB86001AC4CF /* ChannelModel.swift */,
+				2C7A12C5268C87AF008BE91C /* MimeType.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -440,6 +433,7 @@
 		2CAA343D268A0D64001AC4CF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2CAA33E22689EB86001AC4CF /* UIImage+Kingfisher.swift */,
 				2CAA343E268A0D70001AC4CF /* DateFormatter+Default.swift */,
 				2C0D53CC268B3F5B000D0A53 /* String+XMLEntities.swift */,
 			);
@@ -473,6 +467,7 @@
 			packageProductDependencies = (
 				2C67364D2686170C003FB3E0 /* Realm */,
 				2C67364F2686170C003FB3E0 /* RealmSwift */,
+				2C7A12C8268C8CC1008BE91C /* Kingfisher */,
 			);
 			productName = RSSReader;
 			productReference = 2CAA34392689EB9E001AC4CF /* Radic.app */;
@@ -503,6 +498,7 @@
 			mainGroup = 2C1BB9232685E46A00DECAFD;
 			packageReferences = (
 				2C67364C2686170C003FB3E0 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				2C7A12C7268C8CC1008BE91C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 2C1BB9232685E46A00DECAFD;
 			projectDirPath = "";
@@ -542,9 +538,9 @@
 				2CAA342D2689EB86001AC4CF /* DataParseError.swift in Sources */,
 				2CAA34332689EB86001AC4CF /* BaseView.swift in Sources */,
 				2C0D53CD268B3F5B000D0A53 /* String+XMLEntities.swift in Sources */,
-				2CAA34202689EB86001AC4CF /* UIImage+FavIcon.swift in Sources */,
-				2CAA34212689EB86001AC4CF /* FavIconWorker.swift in Sources */,
+				2CAA34202689EB86001AC4CF /* UIImage+Kingfisher.swift in Sources */,
 				2CAA3444268A4356001AC4CF /* FeedItemCell.swift in Sources */,
+				2C7A12C6268C87AF008BE91C /* MimeType.swift in Sources */,
 				2CAA34142689EB86001AC4CF /* FeedUpdateProgressView.swift in Sources */,
 				2CAA34192689EB86001AC4CF /* FeedItemsRouter.swift in Sources */,
 				2CAA34322689EB86001AC4CF /* BaseCollectionViewCell.swift in Sources */,
@@ -788,6 +784,14 @@
 				minimumVersion = 10.8.1;
 			};
 		};
+		2C7A12C7268C8CC1008BE91C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -800,6 +804,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C67364C2686170C003FB3E0 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		2C7A12C8268C8CC1008BE91C /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C7A12C7268C8CC1008BE91C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

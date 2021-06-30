@@ -10,6 +10,10 @@ import UIKit
 
 enum FeedItems {
 
+    enum Constants {
+        static let titleImageSize = CGSize(width: 20, height: 20)
+    }
+
     enum MarkRead {
         struct Request {
             let viewModel: FeedItemViewModel

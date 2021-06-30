@@ -9,6 +9,10 @@ import UIKit
 
 final class FeedCell: BaseTableViewCell {
 
+    private enum Constants {
+        static let imageViewSize = CGSize(width: 16, height: 16)
+    }
+
     private let favIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,11 +82,16 @@ final class FeedCell: BaseTableViewCell {
     }
 
     func configure(with viewModel: FeedViewModel) {
-        
-        if let favIconURL = viewModel.faviconURL {
-            favIconImageView.load(favIcon: favIconURL, placeholder: Images.placeholder)
+
+        let imageURL = viewModel.imageURL ?? viewModel.faviconURL
+        if let imageURL = imageURL {
+            favIconImageView.load(
+                url: imageURL,
+                placeholder: Images.placeholderSmall,
+                size: Constants.imageViewSize
+            )
         } else {
-            favIconImageView.image = Images.placeholder
+            favIconImageView.image = Images.placeholderSmall
         }
 
         titleLabel.text = viewModel.title

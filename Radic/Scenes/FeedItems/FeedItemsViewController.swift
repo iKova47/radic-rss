@@ -9,7 +9,6 @@ import UIKit
 import Combine
 
 protocol FeedItemsDisplayLogic: AnyObject {
-    func display(title: NSAttributedString)
     func display(viewModels: [FeedItemViewModel])
 }
 
@@ -42,6 +41,8 @@ final class FeedItemsViewController: UITableViewController, SharingController {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+
+        viewController.title = viewModel.title
     }
 
     override func viewDidLoad() {
@@ -124,15 +125,6 @@ extension FeedItemsViewController {
 
 // MARK: - FeedItemsDisplayLogic
 extension FeedItemsViewController: FeedItemsDisplayLogic {
-
-    func display(title: NSAttributedString) {
-
-        let label = UILabel()
-        label.attributedText = title
-        label.textColor = .label
-        
-        navigationItem.titleView = label
-    }
 
     func display(viewModels: [FeedItemViewModel]) {
         apply(viewModels: viewModels)

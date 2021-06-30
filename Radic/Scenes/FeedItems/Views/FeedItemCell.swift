@@ -9,6 +9,10 @@ import UIKit
 
 final class FeedItemCell: BaseTableViewCell {
 
+    private enum Constants {
+        static let imageViewSize = CGSize(width: 50, height: 50)
+    }
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,17 +54,44 @@ final class FeedItemCell: BaseTableViewCell {
         return label
     }()
 
-    private let creatorAndDateLabel: UIStackView = {
+    private let creatorAndDateStackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         return view
     }()
 
-    private let mainStackView: UIStackView = {
+    // This stack view holds the `titleDescriptionStackView` and `creatorAndDateLabel`
+    private let labelsStackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
+        view.setContentHuggingPriority(.required, for: .vertical)
+        return view
+    }()
+
+    private let imageViewStackView: UIStackView = {
+        let view = UIStackView()
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.alignment = .top
+        return view
+    }()
+
+    private let itemImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+
+    // This stack view holds the `labelsStackView` and the imageView
+    private let contentStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.spacing = 8
         return view
     }()
 
@@ -74,17 +105,21 @@ final class FeedItemCell: BaseTableViewCell {
 
     // MARK: - Lifecycle
     override func setup() {
-        contentView.addSubview(mainStackView)
+        contentView.addSubview(contentStackView)
 
-        mainStackView.addArrangedSubview(titleDescriptionStackView)
+        contentStackView.addArrangedSubview(labelsStackView)
+        contentStackView.addArrangedSubview(imageViewStackView)
+        imageViewStackView.addArrangedSubview(itemImageView)
+
+        labelsStackView.addArrangedSubview(titleDescriptionStackView)
         titleDescriptionStackView.addArrangedSubview(titleLabel)
         titleDescriptionStackView.addArrangedSubview(descriptionLabel)
 
-        mainStackView.addArrangedSubview(creatorAndDateLabel)
-        creatorAndDateLabel.addArrangedSubview(authorLabel)
-        creatorAndDateLabel.addArrangedSubview(dateLabel)
+        labelsStackView.addArrangedSubview(creatorAndDateStackView)
+        creatorAndDateStackView.addArrangedSubview(authorLabel)
+        creatorAndDateStackView.addArrangedSubview(dateLabel)
 
-        mainStackView.setCustomSpacing(6, after: titleDescriptionStackView)
+        labelsStackView.setCustomSpacing(6, after: titleDescriptionStackView)
 
         contentView.addSubview(readIndicatorView)
     }
@@ -96,10 +131,13 @@ final class FeedItemCell: BaseTableViewCell {
             readIndicatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             readIndicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
 
-            mainStackView.leadingAnchor.constraint(equalTo: readIndicatorView.trailingAnchor, constant: 12),
-            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            contentStackView.leadingAnchor.constraint(equalTo: readIndicatorView.trailingAnchor, constant: 12),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+
+            imageViewStackView.widthAnchor.constraint(equalToConstant: Constants.imageViewSize.width),
+            itemImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewSize.height)
         ])
     }
 
@@ -109,5 +147,11 @@ final class FeedItemCell: BaseTableViewCell {
         authorLabel.text = viewModel.author
         readIndicatorView.isHidden = viewModel.isRead
         dateLabel.text = viewModel.dateString
+
+        if let url = viewModel.imageURL {
+            itemImageView.load(url: url, placeholder: Images.placeholderLarge, size: Constants.imageViewSize)
+        }
+
+        imageViewStackView.isHidden = viewModel.imageURL == nil
     }
 }

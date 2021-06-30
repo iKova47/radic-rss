@@ -10,7 +10,6 @@ import Combine
 
 protocol FeedItemsBusinessLogic {
     func fetchData()
-    func fetchTitle()
     func markRead(request: FeedItems.MarkRead.Request)
     func toggleRead(request: FeedItems.MarkRead.Request)
 }
@@ -31,33 +30,16 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
     }
 
     func fetchData() {
-        fetchTitle()
-
-        if let channel = viewModel.object.channel {
-
-            worker.loadItems(for: channel)
-
-            worker.$items.sink { [weak self] items in
-                self?.presenter?.present(items: items)
-            }
-            .store(in: &cancellables)
+        guard let channel = viewModel.object.channel else {
+            return
         }
-    }
 
-    func fetchTitle() {
+        worker.loadItems(for: channel)
 
-        // We will send just the title without the favIcon first
-        presenter?.present(title: viewModel.title, favIcon: nil)
-
-        // And then if the favIconURL exists, try to fetch the favicon and set the
-        // new title with the new favicon
-        // This is done so that we don't have a weird UX behaviour where if the
-        // favIcon is unreachable, the title shows after a second or two.
-        if let favIcon = viewModel.faviconURL {
-            FavIconWorker.shared.fetch(from: favIcon) { image in
-                self.presenter?.present(title: self.viewModel.title, favIcon: image)
-            }
+        worker.$items.sink { [weak self] items in
+            self?.presenter?.present(items: items)
         }
+        .store(in: &cancellables)
     }
 
     func markRead(request: FeedItems.MarkRead.Request) {

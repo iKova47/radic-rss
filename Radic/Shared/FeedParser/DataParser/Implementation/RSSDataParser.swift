@@ -8,6 +8,9 @@
 import Foundation
 import Combine
 
+/// This is very simple RSS data parser implementation
+/// It could probably be better implemented using keyPaths
+/// But I don't have time atm to do it that way
 final class RSSDataParser: NSObject, DataParser {
 
     enum RSS {
@@ -119,8 +122,8 @@ extension RSSDataParser: XMLParserDelegate {
 
         case RSS.Enclosure.root:
             enclosure = EnclosureModel()
-            enclosure?.url = attributeDict[RSS.Enclosure.url]
-            enclosure?.type = attributeDict[RSS.Enclosure.type]
+            enclosure?.url = attributeDict[RSS.Enclosure.url] ?? ""
+            enclosure?.type = attributeDict[RSS.Enclosure.type] ?? ""
 
             let length = attributeDict[RSS.Enclosure.length] ?? "0"
             enclosure?.length = Int(length) ?? 0

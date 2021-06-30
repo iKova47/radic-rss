@@ -245,10 +245,7 @@ private extension FeedsViewController {
                 }
             } receiveValue: { [weak self] feed in
                 self?.feedRepository.add(object: feed)
-                print("added channel", feed.channel!)
             }
             .store(in: &cancellables)
     }
-
-
 }
