@@ -19,13 +19,13 @@ final class FeedModel: Object {
 
     /// RSS channel for the url. This property will most likely always exist.
     /// Each instance *will* have valid value for this property
-    @objc dynamic var channel: Channel?
+    @objc dynamic var channel: ChannelModel?
 
     override class func primaryKey() -> String? {
         "url"
     }
 
-    convenience init(url: String, title: String?, channel: Channel) {
+    convenience init(url: String, title: String?, channel: ChannelModel) {
         self.init()
 
         self.url = url

@@ -22,14 +22,14 @@ final class FeedParser {
     /// This function will
     /// - Returns: A publisher containing the data or the error
     #warning("Extend this function so the request is wrapped inside of the NSOperation")
-    func parse(contentsOf url: URL) -> AnyPublisher<Channel, FeedParseError> {
+    func parse(contentsOf url: URL) -> AnyPublisher<ChannelModel, FeedParseError> {
         session
             .dataTaskPublisher(for: url)
             .mapError { error -> FeedParseError in
                 self.mapURLSession(error: error)
             }
             .map(\.data)
-            .flatMap { data -> AnyPublisher<Channel, FeedParseError> in
+            .flatMap { data -> AnyPublisher<ChannelModel, FeedParseError> in
                 self.dataParser(for: data)
                     .parse()
                     .mapError { error -> FeedParseError in

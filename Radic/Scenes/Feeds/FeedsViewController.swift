@@ -218,6 +218,10 @@ private extension FeedsViewController {
         addNewFeed(url: "http://ivans-mpb-2018.local:8080/example1.rss", title: nil)
         addNewFeed(url: "https://www.loopinsight.com/feed/", title: nil)
         addNewFeed(url: "https://sixcolors.com/?feed=rss", title: nil)
+
+        addNewFeed(url: "https://omgubuntu.co.uk/feed", title: nil)
+        addNewFeed(url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", title: nil)
+        addNewFeed(url: "https://www.linuxzasve.com/feed", title: nil)
     }
     
     func addNewFeed(url urlString: String, title: String?) {
@@ -241,6 +245,7 @@ private extension FeedsViewController {
                 }
             } receiveValue: { [weak self] feed in
                 self?.feedRepository.add(object: feed)
+                print("added channel", feed.channel!)
             }
             .store(in: &cancellables)
     }

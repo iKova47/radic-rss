@@ -33,7 +33,7 @@ final class FeedItemCell: BaseTableViewCell {
         return view
     }()
 
-    private let creatorLabel: UILabel = {
+    private let authorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
@@ -81,7 +81,7 @@ final class FeedItemCell: BaseTableViewCell {
         titleDescriptionStackView.addArrangedSubview(descriptionLabel)
 
         mainStackView.addArrangedSubview(creatorAndDateLabel)
-        creatorAndDateLabel.addArrangedSubview(creatorLabel)
+        creatorAndDateLabel.addArrangedSubview(authorLabel)
         creatorAndDateLabel.addArrangedSubview(dateLabel)
 
         mainStackView.setCustomSpacing(6, after: titleDescriptionStackView)
@@ -106,7 +106,7 @@ final class FeedItemCell: BaseTableViewCell {
     func configure(with viewModel: FeedItemViewModel) {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
-        creatorLabel.text = viewModel.creator
+        authorLabel.text = viewModel.author
         readIndicatorView.isHidden = viewModel.isRead
         dateLabel.text = viewModel.dateString
     }

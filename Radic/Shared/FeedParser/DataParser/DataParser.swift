@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol DataParser {
-    func parse() -> AnyPublisher<Channel, DataParseError>
+    func parse() -> AnyPublisher<ChannelModel, DataParseError>
 }

@@ -36,10 +36,11 @@ final class BackgroundTaskScheduler {
                 backgroundTask.execute { [task] result in
                     switch result {
                     case .failure(let error):
-                        Log.error("Task execution for \(type(of: backgroundTask)) has failed with error", error: error, category: .backgroundTask)
+                        Log.error("The background task of type: \(type(of: backgroundTask)) has failed", error: error, category: .backgroundTask)
                         task.setTaskCompleted(success: false)
 
                     case .success:
+                        Log.info("The background task of type: \(type(of: backgroundTask)) has successfully completed", category: .backgroundTask)
                         task.setTaskCompleted(success: true)
                     }
                 }
@@ -55,7 +56,7 @@ final class BackgroundTaskScheduler {
         do {
             let backgroundAppRefreshTaskRequest = BGAppRefreshTaskRequest(identifier: identifier)
             
-            // Let's try refresh in the 15 minutes... or so... 
+            // Let's try refresh in the 15 minutes... or whatever the system decides...
             backgroundAppRefreshTaskRequest.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
 
             try BGTaskScheduler.shared.submit(backgroundAppRefreshTaskRequest)

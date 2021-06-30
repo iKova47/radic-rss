@@ -11,11 +11,11 @@ import Combine
 /// The sole purpose of this worker is to update the whole RSS feed
 final class FeedsUpdateWorker {
 
-    typealias ReloadResult = (channel: Channel, isUpdated: Bool)
+    typealias ReloadResult = (channel: ChannelModel, isUpdated: Bool)
 
     private var task: AnyCancellable?
     private let feedRepository = Repository<FeedModel>()
-    private let channelRepository = Repository<Channel>()
+    private let channelRepository = Repository<ChannelModel>()
 
     var progressHandler: ((Float) -> Void)?
 
@@ -43,7 +43,7 @@ final class FeedsUpdateWorker {
 
                 return FeedParser()
                     .parse(contentsOf: url)
-                    .catch { [feed] error -> AnyPublisher<Channel, Never> in
+                    .catch { [feed] error -> AnyPublisher<ChannelModel, Never> in
 
                         // This is safe to force unwrap, we already filtered all feeds and included only the ones where the channel is non nil
                         let channel = feed.channel!
@@ -88,15 +88,15 @@ final class FeedsUpdateWorker {
                     return
                 }
 
-                let updatedChannels = result
+                let updatedChannelModels = result
                     .filter { $0.isUpdated }
                     .map(\.channel)
 
-                Log.info("Feed update completed, \(updatedChannels.count) items are updated", category: .feeds)
+                Log.info("Feed update completed, \(updatedChannelModels.count) items are updated", category: .feeds)
 
-                self?.updateDb(with: updatedChannels)
+                self?.updateDb(with: updatedChannelModels)
 
-                let viewModels = updatedChannels
+                let viewModels = updatedChannelModels
                     .compactMap(\.feed.first)
                     .map(FeedViewModel.init(object:))
 
@@ -104,8 +104,8 @@ final class FeedsUpdateWorker {
             }
     }
 
-    private func updateDb(with updatedChannels: [Channel]) {
-        channelRepository.add(objects: updatedChannels)
+    private func updateDb(with updatedChannelModels: [ChannelModel]) {
+        channelRepository.add(objects: updatedChannelModels)
     }
 
     func cancelPreviousUpdateTask() {

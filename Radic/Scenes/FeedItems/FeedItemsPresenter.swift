@@ -10,7 +10,7 @@ import UIKit
 
 protocol FeedItemsPresentationLogic {
     func present(title: String, favIcon: UIImage?)
-    func present(items: [Item])
+    func present(items: [ItemModel])
     
 }
 
@@ -68,7 +68,7 @@ final class FeedItemsPresenter: FeedItemsPresentationLogic {
         return attachmentTitle
     }
 
-    func present(items: [Item]) {
+    func present(items: [ItemModel]) {
         let viewModels = items.map(FeedItemViewModel.init(item:))
         viewController?.display(viewModels: viewModels)
     }

@@ -9,10 +9,10 @@ import Foundation
 
 struct FeedItemViewModel: Hashable {
     
-    let item: Item
+    let item: ItemModel
     let title: String
     let description: String?
-    let creator: String?
+    let author: String?
     let isRead: Bool
     let dateString: String?
     
@@ -24,11 +24,11 @@ struct FeedItemViewModel: Hashable {
         return URL(string: link)
     }
     
-    init(item: Item) {
+    init(item: ItemModel) {
         self.item = item
         title = item.title ?? "Unnamed"
         description = item.desc
-        creator = item.creator
+        author = item.author
         isRead = item.isRead
         
         if let pubDate = item.pubDate {

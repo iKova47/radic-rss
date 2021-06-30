@@ -11,7 +11,7 @@ struct FeedViewModel: Hashable {
 
     let id: Int
     let object: FeedModel
-    let items: [Item]
+    let items: [ItemModel]
     let title: String
     let description: String?
     let numberOfUnreadItems: Int

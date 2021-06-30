@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  ItemModel.swift
 //  RSSReader
 //
 //  Created by Ivan Kovacevic on 25.06.2021..
@@ -8,21 +8,21 @@
 import Foundation
 import RealmSwift
 
-// Main post item model
-final class Item: Object {
+/// Model specification:
+/// https://validator.w3.org/feed/docs/rss2.html#hrelementsOfLtitemgt
+final class ItemModel: Object {
 
     @objc dynamic var guid: String?
     @objc dynamic var title: String?
     @objc dynamic var link: String?
     @objc dynamic var desc: String?
     @objc dynamic var pubDate: Date?
-    @objc dynamic var creator: String?
-    @objc dynamic var image: String?
+    @objc dynamic var author: String?
+    @objc dynamic var enclosure: EnclosureModel?
 
-    let channel = LinkingObjects(fromType: Channel.self, property: "items")
+    let channel = LinkingObjects(fromType: ChannelModel.self, property: "items")
 
-    #warning("Remove these 2")
-    @objc dynamic var isStarred = false
+    /// Move this property out side of the model if enough time
     @objc dynamic var isRead = false
 
     /*
