@@ -13,7 +13,7 @@ final class FeedUpdateBackgroundTask: BackgroundTask {
     static var identifier = "com.radic.rss.backgroundAppRefreshIdentifier"
     private let worker = FeedsUpdateWorker()
 
-    func execute(completion: @escaping (Result<Void, Error>) -> Void) {
+    func execute(completion: @escaping (() -> Void)) {
 
         worker.updateAllSavedFeeds { [weak self] result in
 
@@ -24,13 +24,17 @@ final class FeedUpdateBackgroundTask: BackgroundTask {
                 }
 
                 Log.info("Received \(viewModels.count) new feeds from background task", category: .backgroundTask)
-                completion(.success(()))
+                completion()
 
             case .failure(let error):
                 Log.error("Feed background refresh failed with error", error: error, category: .backgroundTask)
-                completion(.failure(error))
+                completion()
             }
         }
+    }
+
+    func cancel() {
+        worker.task?.cancel()
     }
 }
 

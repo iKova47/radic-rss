@@ -10,12 +10,14 @@ import Combine
 import BackgroundTasks
 
 /*
- To simulate the background task from Xcode, use this command in the Xcode console:
+ Command to simulate the background task:
 
  e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.radic.rss.backgroundAppRefreshIdentifier"]
  */
 
 final class BackgroundTaskScheduler {
+
+    private static let queue = DispatchQueue(label: "com.radic.backgroundTaskScheduler")
 
     static func register(backgroundTask: BackgroundTask) {
 
@@ -26,23 +28,30 @@ final class BackgroundTaskScheduler {
             .shared
             .register(forTaskWithIdentifier: identifier, using: nil) { [backgroundTask] task in
 
-                // Schedule new task after this one is fired
-                BackgroundTaskScheduler.submitBackgroundTasks(for: identifier)
+                Log.info("Background task with identifier: \(identifier) started")
 
-                task.expirationHandler = {
-                    task.setTaskCompleted(success: false)
+                // Schedule new task after this one is fired
+                submitBackgroundTasks(for: identifier)
+
+                DispatchQueue.main.async {
+
+                    #if DEBUG
+                    #warning("This is for debugging purposes only, remove the line below before the app gets submitted")
+                    LocalNotificationWorker.sendNotification(title: "BGTask", message: "The background task has been started")
+                    #endif
+
+                    // For some reason, this task doesn't get allowed to execute until completion
+                    // The app gets suspended after only a few seconds, and the execution gets suspended.
+                    // https://developer.apple.com/forums/thread/654355
+                    backgroundTask.execute {
+                        task.setTaskCompleted(success: true)
+                        Log.info("Background task with identifier: \(identifier) completed")
+                    }
                 }
 
-                backgroundTask.execute { [task] result in
-                    switch result {
-                    case .failure(let error):
-                        Log.error("The background task of type: \(type(of: backgroundTask)) has failed", error: error, category: .backgroundTask)
-                        task.setTaskCompleted(success: false)
-
-                    case .success:
-                        Log.info("The background task of type: \(type(of: backgroundTask)) has successfully completed", category: .backgroundTask)
-                        task.setTaskCompleted(success: true)
-                    }
+                task.expirationHandler = { [backgroundTask] in
+                    backgroundTask.cancel()
+                    task.setTaskCompleted(success: false)
                 }
             }
     }
@@ -51,19 +60,18 @@ final class BackgroundTaskScheduler {
 
         Log.info("Submitted background task with identifier: \(identifier)", category: .backgroundTask)
 
-        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: identifier)
+        let request = BGProcessingTaskRequest(identifier: identifier)
+        request.requiresNetworkConnectivity = true
+        request.requiresExternalPower = false
 
-        do {
-            let backgroundAppRefreshTaskRequest = BGAppRefreshTaskRequest(identifier: identifier)
-            
-            // Let's try refresh in the 15 minutes... or whatever the system decides...
-            backgroundAppRefreshTaskRequest.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        queue.async {
+            do {
+                try BGTaskScheduler.shared.submit(request)
+                Log.info("Background task with identifier \(identifier) successfully submitted", category: .backgroundTask)
 
-            try BGTaskScheduler.shared.submit(backgroundAppRefreshTaskRequest)
-            Log.info("Task with identifier \(identifier) successfully submitted", category: .backgroundTask)
-
-        } catch {
-            Log.error("Failed to submit task with identifier \(identifier)", error: error, category: .backgroundTask)
+            } catch {
+                Log.error("Failed to submit Background task with identifier \(identifier)", error: error, category: .backgroundTask)
+            }
         }
     }
 }

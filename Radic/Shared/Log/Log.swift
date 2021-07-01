@@ -7,7 +7,7 @@
 
 import OSLog
 
-final class Log {
+enum Log {
 
     enum Subsystem {
         static let main = "com.radic.rss"

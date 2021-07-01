@@ -191,6 +191,7 @@ extension FeedsViewController: FeedsDisplayLogic {
 
     func displayRefresh(progress: Float, formattedProgress: String) {
         progressView.set(progress: progress, formattedProgress: formattedProgress)
+        progressView.alpha = 1
 
         if progress == 1 {
             progressViewHideWorkItem = DispatchWorkItem { [weak self] in

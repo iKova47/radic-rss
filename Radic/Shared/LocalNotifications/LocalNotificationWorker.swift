@@ -7,10 +7,18 @@
 
 import UserNotifications
 
-final class LocalNotificationWorker {
+final class LocalNotificationWorker: NSObject {
+
+    static let shared = LocalNotificationWorker()
+    private let center = UNUserNotificationCenter.current()
+
+    private override init() {
+        super.init()
+        center.delegate = self
+    }
 
     static func requestAuthorization() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { authorised, error in
+        shared.center.requestAuthorization(options: [.alert, .sound, .badge]) { authorised, error in
             guard !authorised else { return }
 
             Log.error("The user has declined the local notifications", error: error)
@@ -30,6 +38,14 @@ final class LocalNotificationWorker {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
         let request = UNNotificationRequest(identifier: title, content: content, trigger: trigger)
 
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        shared.center.add(request, withCompletionHandler: nil)
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+extension LocalNotificationWorker: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge])
     }
 }

@@ -9,5 +9,7 @@ import Foundation
 
 protocol BackgroundTask {
     static var identifier: String { get }
-    func execute(completion: @escaping (Result<Void, Error>) -> Void)
+    
+    func execute(completion: @escaping (() -> Void))
+    func cancel()
 }

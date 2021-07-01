@@ -44,15 +44,17 @@ final class FeedsInteractor: FeedsBusinessLogic, FeedsDataStore {
 
     func loadData() {
         worker.startDataObserving()
-        updateWorker.updateAllSavedFeeds()
+        refreshFeeds()
     }
 
     func refreshFeeds() {
         updateWorker.updateAllSavedFeeds()
 
         updateWorker.progressHandler = { [weak self] progress in
-            let response = Feeds.Refresh.Response(progress: progress)
-            self?.presenter?.presentRefresh(response: response)
+            DispatchQueue.main.async {
+                let response = Feeds.Refresh.Response(progress: progress)
+                self?.presenter?.presentRefresh(response: response)
+            }
         }
     }
 
