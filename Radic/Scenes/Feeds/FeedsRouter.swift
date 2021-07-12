@@ -22,7 +22,9 @@ final class FeedsRouter: NSObject, FeedsRoutingLogic, FeedsDataPassing {
     var dataStore: FeedsDataStore?
 
     func navigateToAddNewFeed() {
-        
+        let vc = AddFeedViewController()
+        let nc = UINavigationController(rootViewController: vc)
+        viewController?.present(nc, animated: true)
     }
 
     func navigate(to url: URL) {

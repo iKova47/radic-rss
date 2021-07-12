@@ -9,12 +9,6 @@ import UIKit
 import Combine
 import BackgroundTasks
 
-/*
- Command to simulate the background task:
-
- e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.radic.rss.backgroundAppRefreshIdentifier"]
- */
-
 final class BackgroundTaskScheduler {
 
     private static let queue = DispatchQueue(label: "com.radic.backgroundTaskScheduler")
@@ -35,14 +29,13 @@ final class BackgroundTaskScheduler {
 
                 DispatchQueue.main.async {
 
-                    #if DEBUG
-                    #warning("This is for debugging purposes only, remove the line below before the app gets submitted")
-                    LocalNotificationWorker.sendNotification(title: "BGTask", message: "The background task has been started")
-                    #endif
-
-                    // For some reason, this task doesn't get allowed to execute until completion
+                    // For some reason, sometimes the task is never run to the completion.
                     // The app gets suspended after only a few seconds, and the execution gets suspended.
                     // https://developer.apple.com/forums/thread/654355
+                    //
+                    // Having look at apple's own example app, I can see the same problem there.
+                    // Link to the their example app:
+                    // https://developer.apple.com/documentation/backgroundtasks/refreshing_and_maintaining_your_app_using_background_tasks
                     backgroundTask.execute {
                         task.setTaskCompleted(success: true)
                         Log.info("Background task with identifier: \(identifier) completed")

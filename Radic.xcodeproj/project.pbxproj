@@ -13,6 +13,13 @@
 		2C0D53D0268B694B000D0A53 /* SharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0D53CF268B694B000D0A53 /* SharingController.swift */; };
 		2C67364E2686170C003FB3E0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364D2686170C003FB3E0 /* Realm */; };
 		2C6736502686170C003FB3E0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C67364F2686170C003FB3E0 /* RealmSwift */; };
+		2C6EFDF1269CD3B3009C51FF /* AddFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDEB269CD3B3009C51FF /* AddFeedPresenter.swift */; };
+		2C6EFDF2269CD3B3009C51FF /* AddFeedWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDEC269CD3B3009C51FF /* AddFeedWorker.swift */; };
+		2C6EFDF3269CD3B3009C51FF /* AddFeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDED269CD3B3009C51FF /* AddFeedRouter.swift */; };
+		2C6EFDF4269CD3B3009C51FF /* AddFeedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDEE269CD3B3009C51FF /* AddFeedModels.swift */; };
+		2C6EFDF5269CD3B3009C51FF /* AddFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDEF269CD3B3009C51FF /* AddFeedViewController.swift */; };
+		2C6EFDF6269CD3B3009C51FF /* AddFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDF0269CD3B3009C51FF /* AddFeedInteractor.swift */; };
+		2C6EFDF8269CE1BE009C51FF /* InsetsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDF7269CE1BE009C51FF /* InsetsTextField.swift */; };
 		2C7A12C4268C5BA8008BE91C /* EnclosureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */; };
 		2C7A12C6268C87AF008BE91C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A12C5268C87AF008BE91C /* MimeType.swift */; };
 		2C7A12C9268C8CC1008BE91C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C7A12C8268C8CC1008BE91C /* Kingfisher */; };
@@ -71,6 +78,13 @@
 		2C0D53CC268B3F5B000D0A53 /* String+XMLEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+XMLEntities.swift"; sourceTree = "<group>"; };
 		2C0D53CF268B694B000D0A53 /* SharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingController.swift; sourceTree = "<group>"; };
 		2C0D53D1268B6C0E000D0A53 /* Radic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Radic.entitlements; sourceTree = "<group>"; };
+		2C6EFDEB269CD3B3009C51FF /* AddFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedPresenter.swift; sourceTree = "<group>"; };
+		2C6EFDEC269CD3B3009C51FF /* AddFeedWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedWorker.swift; sourceTree = "<group>"; };
+		2C6EFDED269CD3B3009C51FF /* AddFeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedRouter.swift; sourceTree = "<group>"; };
+		2C6EFDEE269CD3B3009C51FF /* AddFeedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedModels.swift; sourceTree = "<group>"; };
+		2C6EFDEF269CD3B3009C51FF /* AddFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedViewController.swift; sourceTree = "<group>"; };
+		2C6EFDF0269CD3B3009C51FF /* AddFeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedInteractor.swift; sourceTree = "<group>"; };
+		2C6EFDF7269CE1BE009C51FF /* InsetsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetsTextField.swift; sourceTree = "<group>"; };
 		2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureModel.swift; sourceTree = "<group>"; };
 		2C7A12C5268C87AF008BE91C /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		2CAA33C32689EB86001AC4CF /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +176,19 @@
 			);
 			sourceTree = "<group>";
 		};
+		2C6EFDEA269CD3A6009C51FF /* AddFeed */ = {
+			isa = PBXGroup;
+			children = (
+				2C6EFDEB269CD3B3009C51FF /* AddFeedPresenter.swift */,
+				2C6EFDEC269CD3B3009C51FF /* AddFeedWorker.swift */,
+				2C6EFDED269CD3B3009C51FF /* AddFeedRouter.swift */,
+				2C6EFDEE269CD3B3009C51FF /* AddFeedModels.swift */,
+				2C6EFDEF269CD3B3009C51FF /* AddFeedViewController.swift */,
+				2C6EFDF0269CD3B3009C51FF /* AddFeedInteractor.swift */,
+			);
+			path = AddFeed;
+			sourceTree = "<group>";
+		};
 		2CAA33C02689EB86001AC4CF /* Radic */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +207,7 @@
 		2CAA33C12689EB86001AC4CF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2C6EFDEA269CD3A6009C51FF /* AddFeed */,
 				2CAA33C22689EB86001AC4CF /* Navigation */,
 				2CAA33C42689EB86001AC4CF /* Feeds */,
 				2CAA33D22689EB86001AC4CF /* NoSelection */,
@@ -407,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				2CAA33FF2689EB86001AC4CF /* InsetsLabel.swift */,
+				2C6EFDF7269CE1BE009C51FF /* InsetsTextField.swift */,
 				2CAA34002689EB86001AC4CF /* BaseViews */,
 			);
 			path = Views;
@@ -526,8 +555,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6EFDF3269CD3B3009C51FF /* AddFeedRouter.swift in Sources */,
 				2CAA341E2689EB86001AC4CF /* FeedViewModel.swift in Sources */,
 				2CAA343C2689EF6F001AC4CF /* Log.swift in Sources */,
+				2C6EFDF8269CE1BE009C51FF /* InsetsTextField.swift in Sources */,
 				2CAA34282689EB86001AC4CF /* FeedModel.swift in Sources */,
 				2CAA34172689EB86001AC4CF /* FeedItemsModels.swift in Sources */,
 				2C0D53CB268B3718000D0A53 /* FeedItemsContextMenuBuilder.swift in Sources */,
@@ -535,6 +566,7 @@
 				2CAA34362689EB86001AC4CF /* AppDelegate.swift in Sources */,
 				2CAA341B2689EB86001AC4CF /* FeedItemsPresenter.swift in Sources */,
 				2CAA34132689EB86001AC4CF /* FeedsWorker.swift in Sources */,
+				2C6EFDF5269CD3B3009C51FF /* AddFeedViewController.swift in Sources */,
 				2CAA342D2689EB86001AC4CF /* DataParseError.swift in Sources */,
 				2CAA34332689EB86001AC4CF /* BaseView.swift in Sources */,
 				2C0D53CD268B3F5B000D0A53 /* String+XMLEntities.swift in Sources */,
@@ -544,6 +576,7 @@
 				2CAA34142689EB86001AC4CF /* FeedUpdateProgressView.swift in Sources */,
 				2CAA34192689EB86001AC4CF /* FeedItemsRouter.swift in Sources */,
 				2CAA34322689EB86001AC4CF /* BaseCollectionViewCell.swift in Sources */,
+				2C6EFDF2269CD3B3009C51FF /* AddFeedWorker.swift in Sources */,
 				2CAA34302689EB86001AC4CF /* InsetsLabel.swift in Sources */,
 				2CAA341F2689EB86001AC4CF /* Repository.swift in Sources */,
 				2CAA342F2689EB86001AC4CF /* FeedParser.swift in Sources */,
@@ -554,9 +587,12 @@
 				2CAA340F2689EB86001AC4CF /* FeedsPresenter.swift in Sources */,
 				2CAA34152689EB86001AC4CF /* FeedCell.swift in Sources */,
 				2CAA34112689EB86001AC4CF /* FeedsViewController.swift in Sources */,
+				2C6EFDF6269CD3B3009C51FF /* AddFeedInteractor.swift in Sources */,
 				2CAA34242689EB86001AC4CF /* FeedUpdateBackgroundTask.swift in Sources */,
 				2CAA340D2689EB86001AC4CF /* FeedsModels.swift in Sources */,
+				2C6EFDF1269CD3B3009C51FF /* AddFeedPresenter.swift in Sources */,
 				2CAA34312689EB86001AC4CF /* BaseTableViewCell.swift in Sources */,
+				2C6EFDF4269CD3B3009C51FF /* AddFeedModels.swift in Sources */,
 				2C0B3DCD268C5603006E3A5B /* ImageModel.swift in Sources */,
 				2CAA342E2689EB86001AC4CF /* FeedParseError.swift in Sources */,
 				2CAA343F268A0D70001AC4CF /* DateFormatter+Default.swift in Sources */,

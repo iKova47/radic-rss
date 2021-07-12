@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Label implementation which allows setting custom insets for the label text.
+/// `UILabel` implementation which allows setting custom insets for the label text.
 final class InsetsLabel: UILabel {
 
     var contentEdgeInsets: UIEdgeInsets = .zero

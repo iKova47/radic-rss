@@ -154,7 +154,7 @@ private extension FeedsViewController {
 
         // Add
         let addAction = UIAction { [weak self] _ in
-            self?.addNewFeed()
+            self?.router?.navigateToAddNewFeed()
         }
 
         let addButton = UIBarButtonItem(systemItem: .add, primaryAction: addAction)
@@ -163,22 +163,6 @@ private extension FeedsViewController {
         let progressItem = UIBarButtonItem(customView: progressView)
 
         toolbarItems = [progressItem, flexibleSpace, addButton]
-    }
-    
-    func addAddFeedButton() {
-        
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        
-        let action = UIAction { [weak self] _ in
-            //            self?.router?.navigateToAddNewFeed()
-            self?.addNewFeed()
-        }
-        
-        button.addAction(action, for: .touchUpInside)
-        let barButton = UIBarButtonItem(customView: button)
-        
-        navigationItem.rightBarButtonItem = barButton
     }
 }
 
@@ -207,46 +191,46 @@ extension FeedsViewController: FeedsDisplayLogic {
 }
 
 // MARK: - TEMP
-private extension FeedsViewController {
-    
-    // This is temp
-    func addNewFeed() {
-        
-        addNewFeed(url: "https://swiftbysundell.com/rss", title: nil)
-        addNewFeed(url: "https://www.hackingwithswift.com/articles/rss", title: nil)
-        addNewFeed(url: "https://ericasadun.com/feed", title: nil)
-        addNewFeed(url: "https://rosemaryorchard.com/blog/feed/", title: nil)
-        addNewFeed(url: "http://ivans-mpb-2018.local:8080/example1.rss", title: nil)
-        addNewFeed(url: "https://www.loopinsight.com/feed/", title: nil)
-        addNewFeed(url: "https://sixcolors.com/?feed=rss", title: nil)
-
-        addNewFeed(url: "https://omgubuntu.co.uk/feed", title: nil)
-        addNewFeed(url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", title: nil)
-        addNewFeed(url: "https://www.linuxzasve.com/feed", title: nil)
-    }
-    
-    func addNewFeed(url urlString: String, title: String?) {
-        
-        guard let url = URL(string: urlString) else {
-            print("Invalid URL")
-            return
-        }
-        
-        FeedParser()
-            .parse(contentsOf: url)
-            .map { channel -> FeedModel in
-                FeedModel(url: urlString, title: title, channel: channel)
-            }
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    print("Finished adding new feed")
-                case .failure(let error):
-                    print("Failed to add new feed", error)
-                }
-            } receiveValue: { [weak self] feed in
-                self?.feedRepository.add(object: feed)
-            }
-            .store(in: &cancellables)
-    }
-}
+//private extension FeedsViewController {
+//
+//    // This is temp
+//    func addNewFeed() {
+//
+//        addNewFeed(url: "https://swiftbysundell.com/rss", title: nil)
+//        addNewFeed(url: "https://www.hackingwithswift.com/articles/rss", title: nil)
+//        addNewFeed(url: "https://ericasadun.com/feed", title: nil)
+//        addNewFeed(url: "https://rosemaryorchard.com/blog/feed/", title: nil)
+//        addNewFeed(url: "http://ivans-mpb-2018.local:8080/example1.rss", title: nil)
+//        addNewFeed(url: "https://www.loopinsight.com/feed/", title: nil)
+//        addNewFeed(url: "https://sixcolors.com/?feed=rss", title: nil)
+//
+//        addNewFeed(url: "https://omgubuntu.co.uk/feed", title: nil)
+//        addNewFeed(url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", title: nil)
+//        addNewFeed(url: "https://www.linuxzasve.com/feed", title: nil)
+//    }
+//
+//    func addNewFeed(url urlString: String, title: String?) {
+//
+//        guard let url = URL(string: urlString) else {
+//            print("Invalid URL")
+//            return
+//        }
+//
+//        FeedParser()
+//            .parse(contentsOf: url)
+//            .map { channel -> FeedModel in
+//                FeedModel(url: urlString, title: title, channel: channel)
+//            }
+//            .sink { completion in
+//                switch completion {
+//                case .finished:
+//                    print("Finished adding new feed")
+//                case .failure(let error):
+//                    print("Failed to add new feed", error)
+//                }
+//            } receiveValue: { [weak self] feed in
+//                self?.feedRepository.add(object: feed)
+//            }
+//            .store(in: &cancellables)
+//    }
+//}
