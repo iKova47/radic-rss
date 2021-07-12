@@ -36,19 +36,6 @@ final class AddFeedInteractor: AddFeedBusinessLogic, AddFeedDataStore {
 
         self.url = url
         presenter?.present(prefillURL: url)
-
-//        addNewFeed(url: "https://swiftbysundell.com/rss", title: nil)
-//        addNewFeed(url: "https://www.hackingwithswift.com/articles/rss", title: nil)
-//        addNewFeed(url: "https://ericasadun.com/feed", title: nil)
-//        addNewFeed(url: "https://rosemaryorchard.com/blog/feed/", title: nil)
-//        addNewFeed(url: "http://ivans-mpb-2018.local:8080/example1.rss", title: nil)
-//        addNewFeed(url: "https://www.loopinsight.com/feed/", title: nil)
-//        addNewFeed(url: "https://sixcolors.com/?feed=rss", title: nil)
-//
-//        addNewFeed(url: "https://omgubuntu.co.uk/feed", title: nil)
-//        addNewFeed(url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", title: nil)
-//        addNewFeed(url: "https://www.linuxzasve.com/feed", title: nil)
-
     }
 
     func addFeed(request: AddFeed.Request) {

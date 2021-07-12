@@ -72,6 +72,7 @@ final class AddFeedViewController: UIViewController {
     private let activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
         return view
     }()
 
@@ -130,11 +131,21 @@ final class AddFeedViewController: UIViewController {
     }
 
     func showLoader() {
+        activityIndicatorView.startAnimating()
 
+        UIView.animate(withDuration: 0.33) {
+            self.buttonsStackView.alpha = 0
+            self.activityIndicatorView.alpha = 1
+        }
     }
 
     func hideLoader() {
-
+        UIView.animate(withDuration: 0.33) {
+            self.buttonsStackView.alpha = 1
+            self.activityIndicatorView.alpha = 0
+        } completion: { _ in
+            self.activityIndicatorView.stopAnimating()
+        }
     }
 }
 
@@ -148,6 +159,8 @@ private extension AddFeedViewController {
         buttonsStackView.addArrangedSubview(addButton)
         buttonsStackView.addArrangedSubview(cancelButton)
         addButtonActions()
+
+        view.addSubview(activityIndicatorView)
 
         titleTextField.delegate = self
         urlTextField.delegate = self
@@ -166,7 +179,10 @@ private extension AddFeedViewController {
             buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             buttonsStackView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor, constant: 16),
-            buttonsStackView.heightAnchor.constraint(equalToConstant: 44)
+            buttonsStackView.heightAnchor.constraint(equalToConstant: 44),
+
+            activityIndicatorView.centerYAnchor.constraint(equalTo: buttonsStackView.centerYAnchor),
+            activityIndicatorView.centerXAnchor.constraint(equalTo: buttonsStackView.centerXAnchor)
         ])
     }
 

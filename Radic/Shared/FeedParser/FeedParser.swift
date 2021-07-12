@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-///
+/// A simple wrapper around `URLSession` and `DataParser`
 final class FeedParser {
 
    private let session: URLSession = {
@@ -21,7 +21,6 @@ final class FeedParser {
 
     /// This function will
     /// - Returns: A publisher containing the data or the error
-    #warning("Extend this function so the request is wrapped inside of the NSOperation")
     func parse(contentsOf url: URL) -> AnyPublisher<ChannelModel, FeedParseError> {
         session
             .dataTaskPublisher(for: url)
@@ -47,7 +46,7 @@ private extension FeedParser {
 
     /// This function intends to select the appropriate data parser for the given data instance.
     ///
-    /// NOTE: - For now, we only to do the `RSSDataParsing`, and we fail intentionally
+    /// NOTE: - For now, we only do the `RSSDataParsing`, and we fail intentionally
     ///         in the case the data is not in the correct RSS format.
     ///
     ///         It's possible to extend this function with an option to check whether
