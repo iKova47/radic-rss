@@ -20,6 +20,8 @@
 		2C6EFDF5269CD3B3009C51FF /* AddFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDEF269CD3B3009C51FF /* AddFeedViewController.swift */; };
 		2C6EFDF6269CD3B3009C51FF /* AddFeedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDF0269CD3B3009C51FF /* AddFeedInteractor.swift */; };
 		2C6EFDF8269CE1BE009C51FF /* InsetsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDF7269CE1BE009C51FF /* InsetsTextField.swift */; };
+		2C6EFDFA269CF9C9009C51FF /* FeedsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDF9269CF9C9009C51FF /* FeedsEmptyView.swift */; };
+		2C6EFDFC269CFABA009C51FF /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6EFDFB269CFABA009C51FF /* Spacing.swift */; };
 		2C7A12C4268C5BA8008BE91C /* EnclosureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */; };
 		2C7A12C6268C87AF008BE91C /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A12C5268C87AF008BE91C /* MimeType.swift */; };
 		2C7A12C9268C8CC1008BE91C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C7A12C8268C8CC1008BE91C /* Kingfisher */; };
@@ -85,6 +87,8 @@
 		2C6EFDEF269CD3B3009C51FF /* AddFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedViewController.swift; sourceTree = "<group>"; };
 		2C6EFDF0269CD3B3009C51FF /* AddFeedInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedInteractor.swift; sourceTree = "<group>"; };
 		2C6EFDF7269CE1BE009C51FF /* InsetsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetsTextField.swift; sourceTree = "<group>"; };
+		2C6EFDF9269CF9C9009C51FF /* FeedsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsEmptyView.swift; sourceTree = "<group>"; };
+		2C6EFDFB269CFABA009C51FF /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		2C7A12C3268C5BA8008BE91C /* EnclosureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureModel.swift; sourceTree = "<group>"; };
 		2C7A12C5268C87AF008BE91C /* MimeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		2CAA33C32689EB86001AC4CF /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				2CAA33D02689EB86001AC4CF /* FeedUpdateProgressView.swift */,
+				2C6EFDF9269CF9C9009C51FF /* FeedsEmptyView.swift */,
 				2CAA33D12689EB86001AC4CF /* FeedCell.swift */,
 			);
 			path = Views;
@@ -354,6 +359,7 @@
 			children = (
 				2CAA33EB2689EB86001AC4CF /* Images.swift */,
 				2CAA33EC2689EB86001AC4CF /* Colors.swift */,
+				2C6EFDFB269CFABA009C51FF /* Spacing.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 				2C0D53CD268B3F5B000D0A53 /* String+XMLEntities.swift in Sources */,
 				2CAA34202689EB86001AC4CF /* UIImage+Kingfisher.swift in Sources */,
 				2CAA3444268A4356001AC4CF /* FeedItemCell.swift in Sources */,
+				2C6EFDFC269CFABA009C51FF /* Spacing.swift in Sources */,
 				2C7A12C6268C87AF008BE91C /* MimeType.swift in Sources */,
 				2CAA34142689EB86001AC4CF /* FeedUpdateProgressView.swift in Sources */,
 				2CAA34192689EB86001AC4CF /* FeedItemsRouter.swift in Sources */,
@@ -601,6 +608,7 @@
 				2CAA34382689EB86001AC4CF /* SceneDelegate.swift in Sources */,
 				2CAA342B2689EB86001AC4CF /* ItemModel.swift in Sources */,
 				2CAA340C2689EB86001AC4CF /* FeedsRouter.swift in Sources */,
+				2C6EFDFA269CF9C9009C51FF /* FeedsEmptyView.swift in Sources */,
 				2CAA34272689EB86001AC4CF /* LocalNotificationWorker.swift in Sources */,
 				2CAA340E2689EB86001AC4CF /* FeedsInteractor.swift in Sources */,
 				2CAA34232689EB86001AC4CF /* BackgroundTask.swift in Sources */,

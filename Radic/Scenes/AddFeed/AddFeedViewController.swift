@@ -168,17 +168,17 @@ private extension AddFeedViewController {
         NSLayoutConstraint.activate([
             titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Spacing.l),
             titleTextField.heightAnchor.constraint(equalToConstant: 40),
 
             urlTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             urlTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            urlTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 8),
+            urlTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Spacing.s),
             urlTextField.heightAnchor.constraint(equalToConstant: 40),
 
             buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            buttonsStackView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor, constant: 16),
+            buttonsStackView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor, constant: Spacing.l),
             buttonsStackView.heightAnchor.constraint(equalToConstant: 44),
 
             activityIndicatorView.centerYAnchor.constraint(equalTo: buttonsStackView.centerYAnchor),

@@ -128,13 +128,13 @@ final class FeedItemCell: BaseTableViewCell {
         NSLayoutConstraint.activate([
             readIndicatorView.widthAnchor.constraint(equalToConstant: 10),
             readIndicatorView.heightAnchor.constraint(equalTo: readIndicatorView.widthAnchor),
-            readIndicatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            readIndicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            readIndicatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.m),
+            readIndicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Spacing.m),
 
-            contentStackView.leadingAnchor.constraint(equalTo: readIndicatorView.trailingAnchor, constant: 12),
-            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            contentStackView.leadingAnchor.constraint(equalTo: readIndicatorView.trailingAnchor, constant: Spacing.m),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.m),
+            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Spacing.s),
+            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Spacing.s),
 
             imageViewStackView.widthAnchor.constraint(equalToConstant: Constants.imageViewSize.width),
             itemImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewSize.height)

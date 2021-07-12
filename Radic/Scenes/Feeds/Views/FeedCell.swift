@@ -65,18 +65,18 @@ final class FeedCell: BaseTableViewCell {
 
     override func constrainSubviews() {
         NSLayoutConstraint.activate([
-            favIconImageView.topAnchor.constraint(equalTo: labelsStackView.topAnchor, constant: 4),
-            favIconImageView.heightAnchor.constraint(equalToConstant: 16),
+            favIconImageView.topAnchor.constraint(equalTo: labelsStackView.topAnchor, constant: Spacing.xs),
+            favIconImageView.heightAnchor.constraint(equalToConstant: Spacing.l),
             favIconImageView.widthAnchor.constraint(equalTo: favIconImageView.heightAnchor),
-            favIconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            favIconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Spacing.m),
 
-            labelsStackView.leadingAnchor.constraint(equalTo: favIconImageView.trailingAnchor, constant: 8),
-            labelsStackView.trailingAnchor.constraint(lessThanOrEqualTo: unreadCountLabel.leadingAnchor, constant: -8),
-            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            labelsStackView.leadingAnchor.constraint(equalTo: favIconImageView.trailingAnchor, constant: Spacing.s),
+            labelsStackView.trailingAnchor.constraint(lessThanOrEqualTo: unreadCountLabel.leadingAnchor, constant: -Spacing.s),
+            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Spacing.m),
+            labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Spacing.m),
 
-            unreadCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            unreadCountLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            unreadCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Spacing.m),
+            unreadCountLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Spacing.m),
             unreadCountLabel.widthAnchor.constraint(greaterThanOrEqualTo: unreadCountLabel.heightAnchor)
         ])
     }

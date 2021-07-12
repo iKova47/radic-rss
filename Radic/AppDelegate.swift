@@ -16,6 +16,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         BackgroundTaskScheduler.register(backgroundTask: FeedUpdateBackgroundTask())
+
+        // I usually hate when a random app asks for a random permission as soon as the app is launched
+        // But in this case this is OK, I might refactor this in the future
         LocalNotificationWorker.requestAuthorization()
 
         return true

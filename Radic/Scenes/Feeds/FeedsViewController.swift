@@ -19,6 +19,8 @@ final class FeedsViewController: UITableViewController, SharingController {
     
     private var datasource: UITableViewDiffableDataSource<Int, FeedViewModel>?
 
+    private var emptyView: FeedsEmptyView?
+
     private let progressView: FeedUpdateProgressView = {
         let view = FeedUpdateProgressView()
         view.alpha = 0
@@ -142,7 +144,7 @@ extension FeedsViewController {
     }
 }
 
-// MARK: - Toolbar
+// MARK: - Toolbar & Empty view
 private extension FeedsViewController {
 
     func addToolbar() {
@@ -164,6 +166,33 @@ private extension FeedsViewController {
 
         toolbarItems = [progressItem, flexibleSpace, addButton]
     }
+
+    func addEmptyView() {
+        guard emptyView == nil else {
+            return
+        }
+
+        let emptyView = FeedsEmptyView()
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(emptyView)
+
+        NSLayoutConstraint.activate([
+            emptyView.widthAnchor.constraint(equalToConstant: 300),
+            emptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+
+        self.emptyView = emptyView
+    }
+
+    func removeEmptyView() {
+        guard emptyView != nil else {
+            return
+        }
+
+        emptyView?.removeFromSuperview()
+        emptyView = nil
+    }
 }
 
 // MARK: - FeedsDisplayLogic
@@ -171,6 +200,13 @@ extension FeedsViewController: FeedsDisplayLogic {
     
     func display(feeds: [FeedViewModel]) {
         apply(viewModels: feeds)
+
+        if feeds.isEmpty {
+            addEmptyView()
+
+        } else {
+            removeEmptyView()
+        }
     }
 
     func displayRefresh(progress: Float, formattedProgress: String) {
@@ -189,48 +225,3 @@ extension FeedsViewController: FeedsDisplayLogic {
         }
     }
 }
-
-// MARK: - TEMP
-//private extension FeedsViewController {
-//
-//    // This is temp
-//    func addNewFeed() {
-//
-//        addNewFeed(url: "https://swiftbysundell.com/rss", title: nil)
-//        addNewFeed(url: "https://www.hackingwithswift.com/articles/rss", title: nil)
-//        addNewFeed(url: "https://ericasadun.com/feed", title: nil)
-//        addNewFeed(url: "https://rosemaryorchard.com/blog/feed/", title: nil)
-//        addNewFeed(url: "http://ivans-mpb-2018.local:8080/example1.rss", title: nil)
-//        addNewFeed(url: "https://www.loopinsight.com/feed/", title: nil)
-//        addNewFeed(url: "https://sixcolors.com/?feed=rss", title: nil)
-//
-//        addNewFeed(url: "https://omgubuntu.co.uk/feed", title: nil)
-//        addNewFeed(url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", title: nil)
-//        addNewFeed(url: "https://www.linuxzasve.com/feed", title: nil)
-//    }
-//
-//    func addNewFeed(url urlString: String, title: String?) {
-//
-//        guard let url = URL(string: urlString) else {
-//            print("Invalid URL")
-//            return
-//        }
-//
-//        FeedParser()
-//            .parse(contentsOf: url)
-//            .map { channel -> FeedModel in
-//                FeedModel(url: urlString, title: title, channel: channel)
-//            }
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    print("Finished adding new feed")
-//                case .failure(let error):
-//                    print("Failed to add new feed", error)
-//                }
-//            } receiveValue: { [weak self] feed in
-//                self?.feedRepository.add(object: feed)
-//            }
-//            .store(in: &cancellables)
-//    }
-//}
