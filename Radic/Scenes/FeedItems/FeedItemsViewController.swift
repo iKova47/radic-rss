@@ -95,7 +95,6 @@ extension FeedItemsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
             let viewModel = datasource?.itemIdentifier(for: indexPath), let url = viewModel.url else {
-            #warning("Display error alert here")
             return
         }
 

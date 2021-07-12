@@ -24,10 +24,10 @@ final class FeedItemsContextMenuBuilder {
 
             var children: [UIMenuElement] = []
 
-            let toggleReadTitle = viewModel.isRead ? "Mark unread" : "Mark read"
+            let toggleReadTitle = viewModel.isRead ? Localisation.ContextMenu.markUnread : Localisation.ContextMenu.markRead
             let toggleRead = UIAction(
                 title: toggleReadTitle,
-                image: UIImage(named: "")) { [interactor] _ in
+                image: nil) { [interactor] _ in
                 let request = FeedItems.MarkRead.Request(viewModel: viewModel, index: indexPath.row)
                 interactor?.toggleRead(request: request)
             }
@@ -36,16 +36,16 @@ final class FeedItemsContextMenuBuilder {
 
             if let url = viewModel.url {
                 let openHomepage = UIAction(
-                    title: "Open in browser",
-                    image: UIImage(systemName: "safari")) { [router, interactor] _ in
+                    title: Localisation.ContextMenu.openInBrowser,
+                    image: Images.homepage) { [router, interactor] _ in
                     let request = FeedItems.MarkRead.Request(viewModel: viewModel, index: indexPath.row)
                     interactor?.markRead(request: request)
                     router?.navigate(to: url)
                 }
 
                 let share = UIAction(
-                    title: "Share",
-                    image: UIImage(systemName: "square.and.arrow.up")) { [viewController] _ in
+                    title: Localisation.ContextMenu.share,
+                    image: Images.share) { [viewController] _ in
                     let request = Share.Request(items: [url], viewController: viewController)
                     viewController.share(request: request)
                 }

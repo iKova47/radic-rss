@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  Radic
+
+  Created by Ivan Kovacevic on 13.07.2021..
+  
+*/
+
+// Feeds
+"feeds.emptyMessage" = "Tap on the \"+\" button to add a new feed";
+"feeds.title" = "Feeds";
+"feeds.alert.cancel" = "Cancel";
+"feeds.alert.rename" = "Rename";
+"feeds.alert.remove" = "Remove";
+"feeds.alert.removeMessage" = "Are you sure?";
+
+// No selection
+"noSelection.message" = "No selection";
+
+// Context menu
+"contextMenu.markRead" = "Mark read";
+"contextMenu.markUnread" = "Mark unread";
+"contextMenu.openBrowser" = "Open in browser";
+"contextMenu.share" = "Share";
+"contextMenu.openHomepage" = "Open Homepage";
+"contextMenu.markALlRead" = "Mark all as read in %@";
+"contextMenu.rename" = "Rename";
+"contextMenu.remove" = "Remove";
+
+// Add feed
+"addFeed.title" = "Add new feed";
+"addFeed.textField.title" = "Title (optional)";
+"addFeed.textField.url" = "Feed URL";
+"addFeed.button.add" = "Add";
+"addFeed.button.cancel" = "Cancel";
+
+// Alert
+"alert.actionButton" = "👍";
+"alert.warningTitle" = "Warning ⚠️";
+"alert.errorTitle" = "Error 🌍";
+"alert.failureTitle" = "Failure ⛔️";
+
+// Errors
+"error.alreadyAdded" = "Feed already added";
+"error.invalidURL" = "The url value must be a valid feed URL";
+"error.failedWithReason" = "Failed to add new feed: \n%@";
+
+"error.reason.notValidRSSURL" = "The feed URL must be a valid RSS feed URL";
+"error.reason.invalidURLFormat" = "The URL is not in the correct format";
+"error.reason.offline" = "The internet connection appears to be offline";
+"error.reason.mustBeHTTPS" = "The URL must be secure HTTPS URL";

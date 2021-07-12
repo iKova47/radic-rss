@@ -26,8 +26,7 @@ final class AddFeedViewController: UIViewController {
         textField.layer.borderColor = UIColor.separator.cgColor
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
-
-        textField.placeholder = "Title (optional)"
+        textField.placeholder = Localisation.AddFeed.TextField.titlePlaceholder
         return textField
     }()
 
@@ -40,13 +39,13 @@ final class AddFeedViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
 
-        textField.placeholder = "Feed URL"
+        textField.placeholder = Localisation.AddFeed.TextField.urlPlaceholder
         return textField
     }()
 
     private let addButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Add", for: .normal)
+        button.setTitle(Localisation.AddFeed.Button.add, for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = Colors.accentColor
         return button
@@ -54,7 +53,7 @@ final class AddFeedViewController: UIViewController {
 
     private let cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Cancel", for: .normal)
+        button.setTitle(Localisation.AddFeed.Button.cancel, for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = .tertiarySystemBackground
         return button
@@ -108,7 +107,7 @@ final class AddFeedViewController: UIViewController {
         setupSubviews()
 
         view.backgroundColor = Colors.backgroundColor
-        title = "Add new feed"
+        title = Localisation.AddFeed.title
         interactor?.requestPrefillUrl()
 
         titleTextField.becomeFirstResponder()
@@ -166,18 +165,18 @@ private extension AddFeedViewController {
         urlTextField.delegate = self
 
         NSLayoutConstraint.activate([
-            titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacing.xl),
+            titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacing.xl),
             titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Spacing.l),
             titleTextField.heightAnchor.constraint(equalToConstant: 40),
 
-            urlTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            urlTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            urlTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacing.xl),
+            urlTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacing.xl),
             urlTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: Spacing.s),
             urlTextField.heightAnchor.constraint(equalToConstant: 40),
 
-            buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Spacing.xl),
+            buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Spacing.xl),
             buttonsStackView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor, constant: Spacing.l),
             buttonsStackView.heightAnchor.constraint(equalToConstant: 44),
 
@@ -214,7 +213,7 @@ extension AddFeedViewController: AddFeedDisplayLogic {
 
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "👍", style: .default)
+        let action = UIAlertAction(title: Localisation.Alert.actionButton, style: .default)
         controller.addAction(action)
 
         present(controller, animated: true)

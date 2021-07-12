@@ -60,16 +60,16 @@ final class FeedsInteractor: FeedsBusinessLogic, FeedsDataStore {
 
     func remove(request: Feeds.Remove.Request) {
         let controller = UIAlertController(
-            title: "Remove \(request.viewModel.title)",
-            message: "Are you sure?",
+            title: "\(Localisation.Feeds.Alert.remove) \(request.viewModel.title)",
+            message: Localisation.Feeds.Alert.removeMessage,
             preferredStyle: .alert
         )
 
-        let removeAction = UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+        let removeAction = UIAlertAction(title: Localisation.Feeds.Alert.remove, style: .destructive) { [weak self] _ in
             self?.worker.remove(model: request.viewModel.object)
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: Localisation.Feeds.Alert.cancel, style: .cancel)
 
         controller.addAction(removeAction)
         controller.addAction(cancelAction)
@@ -80,7 +80,7 @@ final class FeedsInteractor: FeedsBusinessLogic, FeedsDataStore {
     func rename(request: Feeds.Rename.Request) {
 
         let controller = UIAlertController(
-            title: "Rename “\(request.viewModel.title)”",
+            title: "\(Localisation.Feeds.Alert.rename) “\(request.viewModel.title)”",
             message: nil,
             preferredStyle: .alert
         )
@@ -89,12 +89,12 @@ final class FeedsInteractor: FeedsBusinessLogic, FeedsDataStore {
             textField.text = request.viewModel.title
         }
 
-        let renameAction = UIAlertAction(title: "Rename", style: .default) { [weak self] _ in
+        let renameAction = UIAlertAction(title: Localisation.Feeds.Alert.rename, style: .default) { [weak self] _ in
             let text = controller.textFields?.first?.text ?? ""
             self?.worker.rename(model: request.viewModel.object, title: text)
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: Localisation.Feeds.Alert.cancel, style: .cancel)
 
         controller.addAction(renameAction)
         controller.addAction(cancelAction)

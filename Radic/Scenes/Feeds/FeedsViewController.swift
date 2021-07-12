@@ -67,7 +67,7 @@ final class FeedsViewController: UITableViewController, SharingController {
 
         view.backgroundColor = Colors.backgroundColor
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Feeds"
+        navigationItem.title = Localisation.Feeds.title
                 
         configureTableView()
         addToolbar()

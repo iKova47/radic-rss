@@ -13,7 +13,7 @@ final class NoSelectionViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .tertiaryLabel
-        label.text = "No selection"
+        label.text = Localisation.NoSelection.message
         label.font = .boldSystemFont(ofSize: 20)
         label.textAlignment = .center
         return label

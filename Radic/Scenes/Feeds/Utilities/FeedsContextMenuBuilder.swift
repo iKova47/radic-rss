@@ -25,16 +25,16 @@ final class FeedsContextMenuBuilder {
 
             if let url = viewModel.homepageURL {
                 let openHomepage = UIAction(
-                    title: "Open Homepage",
-                    image: UIImage(systemName: "safari")) { [router] _ in
+                    title: Localisation.ContextMenu.openHomepage,
+                    image: Images.homepage) { [router] _ in
                     router?.navigate(to: url)
                 }
 
                 children.append(openHomepage)
 
                 let share = UIAction(
-                    title: "Share",
-                    image: UIImage(systemName: "square.and.arrow.up")) { [viewController] _ in
+                    title: Localisation.ContextMenu.share,
+                    image: Images.share) { [viewController] _ in
                     let request = Share.Request(items: [url], viewController: viewController)
                     viewController.share(request: request)
                 }
@@ -44,8 +44,8 @@ final class FeedsContextMenuBuilder {
 
             if viewModel.numberOfUnreadItems > 0 {
                 let markAllAsRead = UIAction(
-                    title: "Mark all as read in “\(viewModel.title)”",
-                    image: UIImage(systemName: "checkmark.square")) { [interactor] _ in
+                    title: Localisation.ContextMenu.markAllRead(in: "\"\(viewModel.title)\""),
+                    image: Images.markRead) { [interactor] _ in
                     let request = Feeds.MarkAllItemsAsRead.Request(viewModel: viewModel)
                     interactor?.markAllAsRead(request: request)
                 }
@@ -54,15 +54,15 @@ final class FeedsContextMenuBuilder {
             }
 
             let rename = UIAction(
-                title: "Rename",
-                image: UIImage(systemName: "pencil.and.outline")) { [viewController, interactor] _ in
+                title: Localisation.ContextMenu.rename,
+                image: Images.rename) { [viewController, interactor] _ in
                 let request = Feeds.Rename.Request(viewController: viewController, viewModel: viewModel)
                 interactor?.rename(request: request)
             }
 
             let remove = UIAction(
-                title: "Remove",
-                image: UIImage(systemName: "trash"),
+                title: Localisation.ContextMenu.remove,
+                image: Images.remove,
                 attributes: .destructive) { [viewController, interactor] _ in
                 let request = Feeds.Remove.Request(viewController: viewController, viewModel: viewModel)
                 interactor?.remove(request: request)

@@ -26,11 +26,11 @@ final class AddFeedPresenter: AddFeedPresentationLogic {
         case .success:
             viewController?.displaySuccess()
         case .alreadyAdded:
-            viewController?.displayAlert(title: "Warning ⚠️", message: "Feed already added")
+            viewController?.displayAlert(title: Localisation.Alert.warningTitle, message: Localisation.Error.alreadyAdded)
         case .invalidURL:
-            viewController?.displayAlert(title: "Error 🌍", message: "The url value must be a valid feed URL")
+            viewController?.displayAlert(title: Localisation.Alert.errorTitle, message: Localisation.Error.invalidURL)
         case .failure(let error):
-            viewController?.displayAlert(title: "Failure ⛔️", message: "Failed to add new feed: \n\(parse(error: error))")
+            viewController?.displayAlert(title: Localisation.Alert.failureTitle, message: Localisation.Error.failed(reason: parse(error: error)))
         }
     }
 
@@ -59,7 +59,7 @@ final class AddFeedPresenter: AddFeedPresentationLogic {
             // This case, for now, probably means that the provided feed URl is not a valid `RSS` feed
             // Probably the user tried to enter json or atom url
             // Let's make this clear to the user
-            return "The feed URL must be a valid RSS feed URL"
+            return Localisation.Error.Reason.notValidRSSURL
         }
     }
 
@@ -67,11 +67,11 @@ final class AddFeedPresenter: AddFeedPresentationLogic {
     private func parse(error: URLError) -> String {
         switch error.code {
         case .unsupportedURL:
-            return "The url is not in the correct format"
+            return Localisation.Error.Reason.invalidURLFormat
         case .notConnectedToInternet:
-            return "The internet connection appears to be offline"
+            return Localisation.Error.Reason.offline
         case .appTransportSecurityRequiresSecureConnection:
-            return "The URL must be secure HTTPS URL"
+            return Localisation.Error.Reason.mustBeHTTPS
 
         default:
             return error.localizedDescription
