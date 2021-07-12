@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol AddFeedDisplayLogic: AnyObject {
     func display(prefillURL: URL)
@@ -16,6 +17,7 @@ protocol AddFeedDisplayLogic: AnyObject {
 final class AddFeedViewController: UIViewController {
     var interactor: AddFeedBusinessLogic?
     var router: (NSObjectProtocol & AddFeedRoutingLogic & AddFeedDataPassing)?
+    private var notificationCancellable: AnyCancellable?
 
     // MARK:- Views
     private let titleTextField: UITextField = {
@@ -105,6 +107,7 @@ final class AddFeedViewController: UIViewController {
         super.viewDidLoad()
 
         setupSubviews()
+        observeForegroundNotification()
 
         view.backgroundColor = Colors.backgroundColor
         title = Localisation.AddFeed.title
@@ -122,29 +125,11 @@ final class AddFeedViewController: UIViewController {
             return
         }
 
+        showLoader()
+
         let url = URL(string: text)
         let request = AddFeed.Request(title: titleTextField.text, url: url)
         interactor?.addFeed(request: request)
-
-        showLoader()
-    }
-
-    func showLoader() {
-        activityIndicatorView.startAnimating()
-
-        UIView.animate(withDuration: 0.33) {
-            self.buttonsStackView.alpha = 0
-            self.activityIndicatorView.alpha = 1
-        }
-    }
-
-    func hideLoader() {
-        UIView.animate(withDuration: 0.33) {
-            self.buttonsStackView.alpha = 1
-            self.activityIndicatorView.alpha = 0
-        } completion: { _ in
-            self.activityIndicatorView.stopAnimating()
-        }
     }
 }
 
@@ -199,6 +184,24 @@ private extension AddFeedViewController {
 
         cancelButton.addAction(UIAction(handler: cancelButtonHandler), for: .touchUpInside)
     }
+
+    func showLoader() {
+        activityIndicatorView.startAnimating()
+
+        UIView.animate(withDuration: 0.33) {
+            self.buttonsStackView.alpha = 0
+            self.activityIndicatorView.alpha = 1
+        }
+    }
+
+    func hideLoader() {
+        UIView.animate(withDuration: 0.33) {
+            self.buttonsStackView.alpha = 1
+            self.activityIndicatorView.alpha = 0
+        } completion: { _ in
+            self.activityIndicatorView.stopAnimating()
+        }
+    }
 }
 
 // MARK: - AddFeedDisplayLogic
@@ -244,5 +247,18 @@ extension AddFeedViewController: UITextFieldDelegate {
         }
 
         return true
+    }
+}
+
+// MARK: - Foreground notification observation
+private extension AddFeedViewController {
+
+    func observeForegroundNotification() {
+        notificationCancellable = NotificationCenter
+            .default
+            .publisher(for: UIApplication.willEnterForegroundNotification)
+            .sink(receiveValue: { [weak self] _ in
+                self?.interactor?.requestPrefillUrl()
+            })
     }
 }
