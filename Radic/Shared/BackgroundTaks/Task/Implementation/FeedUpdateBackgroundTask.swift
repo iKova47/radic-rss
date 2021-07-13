@@ -59,7 +59,7 @@ extension FeedUpdateBackgroundTask {
 
         } else {
             let first4OrLess = feeds.prefix(4)
-            message = "New articles, including: " + first4OrLess.map(\.title).joined(separator: ",") + " & more, are now available."
+            message = "New articles, including: " + first4OrLess.map(\.title).joined(separator: ", ") + " & more, are now available."
         }
 
         return message

@@ -13,11 +13,7 @@ import RealmSwift
 //
 // We only implement the required properties of the image model
 final class ImageModel: Object {
-    @objc dynamic var url: String?
-    @objc dynamic var title: String?
-    @objc dynamic var link: String?
-
-    override class func primaryKey() -> String? {
-        "url"
-    }
+    @Persisted(primaryKey: true) var url: String?
+    @Persisted var title: String?
+    @Persisted var link: String?
 }

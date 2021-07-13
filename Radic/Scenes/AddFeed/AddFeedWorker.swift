@@ -18,6 +18,7 @@ final class AddFeedWorker {
     private let feedRepository = Repository<FeedModel>()
 
     // MARK: - Lifecycle
+
     func fetchPasteboardContent() -> URL? {
         guard let value = UIPasteboard.general.string else {
             return nil
@@ -26,6 +27,9 @@ final class AddFeedWorker {
         guard let url = URL(string: value) else {
             return nil
         }
+
+        // We should probably also check if the feed URL is already added...
+        // Let't leave this for the later time...
 
         return isProbablyRSSURL(url: url) ? url : nil
     }

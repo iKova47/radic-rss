@@ -25,12 +25,12 @@ struct FeedItemViewModel: Hashable {
         return URL(string: link)
     }
     
-    init(item: ItemModel) {
+    init(item: ItemModel, isRead: Bool) {
         self.item = item
         title = item.title ?? "Unnamed"
         description = item.desc
         author = item.author
-        isRead = item.isRead
+        self.isRead = isRead
         
         if let pubDate = item.pubDate {
             let formatter = Calendar.current.isDateInToday(pubDate) ?

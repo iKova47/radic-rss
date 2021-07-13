@@ -9,15 +9,19 @@
 import UIKit
 
 protocol FeedItemsPresentationLogic {
-    func present(items: [ItemModel])
+    func present(items: [ItemModel], readItems: [ReadModel])
     
 }
 
 final class FeedItemsPresenter: FeedItemsPresentationLogic {
     weak var viewController: FeedItemsDisplayLogic?
 
-    func present(items: [ItemModel]) {
-        let viewModels = items.map(FeedItemViewModel.init(item:))
+    func present(items: [ItemModel], readItems: [ReadModel]) {
+
+        let viewModels = items.map { item in
+            FeedItemViewModel(item: item, isRead: readItems.contains(where: { $0.guid == item.guid }))
+        }
+
         viewController?.display(viewModels: viewModels)
     }
 }

@@ -33,13 +33,15 @@ final class FeedsInteractor: FeedsBusinessLogic, FeedsDataStore {
     }
 
     private func observeFeeds() {
-        worker
-            .$feeds
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] feeds in
-                self?.presenter?.present(feeds: feeds)
-            }
-            .store(in: &cancellables)
+
+        Publishers.CombineLatest(
+            worker.$feeds.removeDuplicates(),
+            worker.$readItems.removeDuplicates()
+        )
+        .sink { [weak self] feeds, readItems in
+            self?.presenter?.present(feeds: feeds, readItems: readItems)
+        }
+        .store(in: &cancellables)
     }
 
     func loadData() {

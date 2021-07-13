@@ -13,8 +13,12 @@ final class FeedsWorker {
     @Published
     var feeds: [FeedModel] = []
 
+    @Published
+    var readItems: [ReadModel] = []
+
     private var cancellables: Set<AnyCancellable> = []
-    private let repository = Repository<FeedModel>()
+    private let feedRepository = Repository<FeedModel>()
+    private let readRepository = Repository<ReadModel>()
     private let parser = FeedParser()
 }
 
@@ -23,7 +27,7 @@ extension FeedsWorker {
 
     func startDataObserving() {
 
-        repository
+        feedRepository
             .observableResults()
             .sink { completion in
                 switch completion {
@@ -36,21 +40,43 @@ extension FeedsWorker {
                 self?.feeds = Array(feeds)
             }
             .store(in: &cancellables)
+
+        readRepository
+            .observableResults()
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    Log.error("Failed to fetch read items", error: error, category: .feeds)
+                }
+            } receiveValue: { [weak self] items in
+                self?.readItems = Array(items)
+            }
+            .store(in: &cancellables)
     }
 
     func remove(model: FeedModel) {
-        repository.delete(object: model)
+        feedRepository.delete(object: model)
     }
 
     func rename(model: FeedModel, title: String) {
-        repository.update { [model] in
+        feedRepository.update { [model] in
             model.title = title
         }
     }
 
     func markAllAsRead(model: FeedModel) {
-        repository.update { [model] in
-            model.channel?.items.forEach { $0.isRead = true }
+        guard let channel = model.channel else {
+            return
         }
+
+        let items = channel.items.map { item -> ReadModel in
+            let readItem = ReadModel()
+            readItem.guid = item.guid
+            return readItem
+        }
+
+        readRepository.add(objects: Array(items))
     }
 }

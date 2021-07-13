@@ -36,8 +36,12 @@ final class FeedItemsInteractor: FeedItemsBusinessLogic, FeedItemsDataStore {
 
         worker.loadItems(for: channel)
 
-        worker.$items.sink { [weak self] items in
-            self?.presenter?.present(items: items)
+        Publishers.CombineLatest(
+            worker.$items.removeDuplicates(),
+            worker.$readItems.removeDuplicates()
+        )
+        .sink { [weak self] items, readItems in
+            self?.presenter?.present(items: items, readItems: readItems)
         }
         .store(in: &cancellables)
     }

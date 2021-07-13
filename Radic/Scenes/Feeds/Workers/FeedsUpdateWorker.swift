@@ -14,6 +14,7 @@ final class FeedsUpdateWorker {
     typealias ReloadResult = (channel: ChannelModel, isUpdated: Bool)
     
     var task: AnyCancellable?
+    private let readItemRepository = Repository<ReadModel>()
     private let feedRepository = Repository<FeedModel>()
     private let channelRepository = Repository<ChannelModel>()
     private let parser = FeedParser()
@@ -105,8 +106,8 @@ final class FeedsUpdateWorker {
                 
                 let viewModels = updatedChannelModels
                     .compactMap(\.feed.first)
-                    .map(FeedViewModel.init(object:))
-                
+                    .map { FeedViewModel(object: $0, numberOfUnreadItems: 0) } // We don't care for the `numberOfUnreadItems` here since it's not used directly
+
                 handler?(.success(viewModels))
             }
     }

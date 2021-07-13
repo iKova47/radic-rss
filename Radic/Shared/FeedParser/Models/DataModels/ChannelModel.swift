@@ -13,20 +13,17 @@ import RealmSwift
 final class ChannelModel: Object {
 
     // Required elements
-    @objc dynamic var title: String?
-    @objc dynamic var desc: String?
-    @objc dynamic var link: String?
-
-    // Optional elements
-    @objc dynamic var lastBuildDate: Date?
-    @objc dynamic var image: ImageModel?
-    let items = List<ItemModel>()
-
-    let feed = LinkingObjects(fromType: FeedModel.self, property: "channel")
+    @Persisted var title: String?
+    @Persisted var desc: String?
 
     /// The `link` property should be unique for each new channel, so it's probably
     /// safe to use it as a primary key.
-    override class func primaryKey() -> String? {
-        "link"
-    }
+    @Persisted(primaryKey: true) var link: String?
+
+    // Optional elements
+    @Persisted var lastBuildDate: Date?
+    @Persisted var image: ImageModel?
+    @Persisted var items: List<ItemModel>
+
+    @Persisted(originProperty: "channel") var feed: LinkingObjects<FeedModel>
 }

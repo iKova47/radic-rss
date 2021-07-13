@@ -13,11 +13,7 @@ import RealmSwift
 final class EnclosureModel: Object {
 
     // The specification says that the all 3 variables are required
-    @objc dynamic var url: String = ""
-    @objc dynamic var length: Int = 0
-    @objc dynamic var type: String = ""
-
-    override class func primaryKey() -> String? {
-        "url"
-    }
+    @Persisted(primaryKey: true) var url: String = ""
+    @Persisted var length: Int = 0
+    @Persisted var type: String = ""
 }

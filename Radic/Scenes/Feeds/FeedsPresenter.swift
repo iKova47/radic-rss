@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FeedsPresentationLogic {
-    func present(feeds: [FeedModel])
+    func present(feeds: [FeedModel], readItems: [ReadModel])
     func presentRefresh(response: Feeds.Refresh.Response)
 }
 
@@ -22,8 +22,22 @@ final class FeedsPresenter: FeedsPresentationLogic {
         return formatter
     }()
 
-    func present(feeds: [FeedModel]) {
-        let viewModels = feeds.map(FeedViewModel.init)
+    func present(feeds: [FeedModel], readItems: [ReadModel]) {
+        let viewModels = feeds.compactMap { feed -> FeedViewModel? in
+            guard let channel = feed.channel else {
+                return nil
+            }
+
+            let allChannelItems = channel.items
+            let readItems = readItems.filter { readItem in
+                allChannelItems.contains(where: { $0.guid == readItem.guid })
+            }
+
+            let unreadCount = allChannelItems.count - readItems.count
+
+            return FeedViewModel(object: feed, numberOfUnreadItems: unreadCount)
+        }
+
         viewController?.display(feeds: viewModels)
     }
 
