@@ -57,7 +57,8 @@ final class AddFeedViewController: UIViewController {
         let button = UIButton()
         button.setTitle(Localisation.AddFeed.Button.cancel, for: .normal)
         button.layer.cornerRadius = 10
-        button.backgroundColor = .tertiarySystemBackground
+        button.backgroundColor = .systemGray3
+        button.setTitleColor(.label, for: .normal)
         return button
     }()
 
@@ -116,6 +117,12 @@ final class AddFeedViewController: UIViewController {
         titleTextField.becomeFirstResponder()
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        urlTextField.layer.borderColor = UIColor.separator.cgColor
+        titleTextField.layer.borderColor = UIColor.separator.cgColor
+    }
+    
     private func tryToAddNewFeed() {
         guard interactor?.canAddNewFeed ?? false else {
             return
